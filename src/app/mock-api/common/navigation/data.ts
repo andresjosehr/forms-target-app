@@ -9,26 +9,9 @@ const navigation: FuseNavigationItem[] = [
         icon : 'heroicons_outline:chart-pie',
         link : '/example'
     },
+    /* Add new menu items here */
 
-    {
-          id   : 'students',
-          title: 'Estudiantes',
-          type : 'basic',
-          // icon : 'email',
-          link  : '/estudiantes'
-       },
 
-        {
-          id   : 'asignatures',
-          title: 'Asignaturas',
-          type : 'basic',
-          // icon : 'email',
-          link  : '/asignaturas'
-       },
-
-        /* Add new menu items here */
-      
-      
 
 
 
