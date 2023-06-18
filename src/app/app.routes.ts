@@ -76,11 +76,6 @@ export const appRoutes: Route[] = [
         children: [
             {path: 'example', loadChildren: () => import('app/modules/admin/example/example.routes')},
 
-            /* Add new routes here */
-         { path: 'asignaturas', loadChildren: () => import('app/asignatures/asignatures.module').then(m => m.AsignaturesModule) },
-       
-         { path: 'estudiantes', loadChildren: () => import('app/students/students.module').then(m => m.StudentsModule) },
-       
 
 
 
