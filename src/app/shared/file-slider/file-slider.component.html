@@ -1,0 +1,36 @@
+<div class="flex justify-center items-center">
+    <div class="">
+      <div class="relative">
+
+        <img *ngIf="isImage(data.files[data.index].type)" [src]="data.files[data.index].fileBase64" alt="" class="w-full h-auto">
+        <div *ngIf="!isImage(data.files[data.index].type)">
+            <div class="file h-80 w-128 flex items-center justify-center mx-20">
+                <div class="text-center">
+                    <div class="text-3xl font-semibold">
+                        {{data.files[data.index].name}}
+                    </div>
+                    <div class="mt-4">
+                        <button (click)="downloadFile(data.files[data.index])" mat-button class="bg-gray-800 text-white">
+                            <mat-icon>attach_file</mat-icon>
+                            Descargar Archivo
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="absolute h-full w-full top-0 flex items-center justify-between">
+                <button (click)="previousImage()" class="bg-gray-800 text-white px-4 py-2 rounded-l">
+                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="w-6 h-6">
+                    <path d="M15 18l-6-6 6-6" />
+                    </svg>
+                </button>
+                <button (click)="nextImage()" class="bg-gray-800 text-white px-4 py-2 rounded-r">
+                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="w-6 h-6">
+                    <path d="M9 18l6-6-6-6" />
+                    </svg>
+                </button>
+            </div>
+      </div>
+    </div>
+    <a class="hidden" id="download-document"></a>
+  </div>

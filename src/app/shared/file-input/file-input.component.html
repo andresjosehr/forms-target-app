@@ -1,0 +1,23 @@
+<div class="w-full file-input border border-dashed border-gray-600 rounded p-4">
+    <div>{{label}}</div>
+	<button (click)="fileInput.click()" mat-button class="rounded mr-1 p-0 bg-primary-300 text-on-primary-300 w-full">Seleccionar archivo</button>
+	<input (change)="selectFile($event)" #fileInput type="file" class="hidden" multiple>
+
+    <div class="w-full mt-4 flex flex-wrap gap-4">
+        <div *ngFor="let file of this.files.value; let i = index"
+        class="w-3/12 bg-card shadow-md rounded flex justify-center items-center cursor-pointer relative
+        transition ease-in-out hover:-translate-y-1 hover:scale-110 hover:bg-indigo-100 duration-300"
+        (click)="openDialog(this.files.value, i)"
+        style="flex-basis: calc(25% - 16px);">
+            <div (click)="removeFile(i)" class="absolute top-2 right-2 cursor-pointer"><mat-icon>close</mat-icon></div>
+            <div class="text-center p-4" *ngIf="!isImage(file.type)">
+                <mat-icon>attach_file</mat-icon>
+                <div>{{file.name}}</div>
+            </div>
+
+            <div class="text-center" *ngIf="isImage(file.type)">
+                <img [src]="file.fileBase64" [alt]="file.name">
+            </div>
+        </div>
+    </div>
+</div>
