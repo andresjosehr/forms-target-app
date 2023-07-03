@@ -32,20 +32,15 @@ export class ManageEntityComponent<Entity> {
         protected _matSnackBar: MatSnackBar,
         @Inject('entityFormGroup') protected entityFormGroup: FormGroup,
         @Inject('service') protected _service: any,
+        @Inject('string') protected data: {id: string | null},
         @Inject('string') protected _pluralEntity: string,
         @Inject('string') protected _singularEntity: any
     ) {
-        this.checkRouteParams();
+        if(data.id){
+            this.entityID = data.id;
+            this.getEntity();
+        }
         this.dasherizedEntity = this._globalService.dasherize(this._pluralEntity);
-    }
-
-    checkRouteParams(): void {
-        this._activateRoute.params.subscribe((params) => {
-            if (params.id) {
-                this.entityID = params.id;
-                this.getEntity();
-            }
-        });
     }
 
     getEntity(): void {
@@ -64,10 +59,13 @@ export class ManageEntityComponent<Entity> {
             // takeUntil(this._unsubscribeAll)
             .pipe()
             .subscribe(
-                () => {
+                (r) => {
                     this.entityFormGroup.enable();
                     // navigate with query params
-                    this._router.navigate([`/${this.dasherizedEntity}/lista`,{ m: 1 }]);
+                    // this._router.navigate([`/${this.dasherizedEntity}/lista`,{ m: 1 }]);
+                    this._globalService.openSnackBar(this._matSnackBar, `${this._singularEntity} creado correctamente`, 2500, 'success' );
+                    this.entityID = r.data.id;
+
                 },
                 (response: HttpValidationErrorResponse) => this.handleErrorRequestError(response)
             );
@@ -83,7 +81,7 @@ export class ManageEntityComponent<Entity> {
         this._service
             .update(this.entityID, this.entityFormGroup.value).pipe().subscribe(() => {
                     this.entityFormGroup.enable();
-                    this._router.navigate([`/${this.dasherizedEntity}/lista`, { m: 2 } ]);
+                    this._globalService.openSnackBar(this._matSnackBar, `${this._singularEntity} actualizado correctamente`, 2500, 'success' );
                 },
                 (response: HttpValidationErrorResponse) => this.handleErrorRequestError(response)
             );

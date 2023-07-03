@@ -17,9 +17,9 @@ import { MatSnackBar } from '@angular/material/snack-bar';
 })
 export class EntitiesListComponent<Entity> {
 	dataSource: MatTableDataSource<any>;
-	entitiesPaginated: any;
+	entitiesPaginated1: any;
+    entitiesPaginated2: any;
 	_unsubscribeAll: Subject<any> = new Subject<any>();
-	user;
     m: '1' | '2';
 
     get searchTerms(): SearchObject{
@@ -50,10 +50,6 @@ export class EntitiesListComponent<Entity> {
 
   ngOnInit(): void {
 
-	this._userService.user$.pipe(takeUntil(this._unsubscribeAll)).subscribe((user) => {
-		this.user = user;
-	});
-
 	this._activatedRoute.params.pipe(takeUntil(this._unsubscribeAll)).subscribe((params) => {
 		if (params.m) {
             if(params.m === '1'){
@@ -64,13 +60,18 @@ export class EntitiesListComponent<Entity> {
             }
 		}
 	});
-	this.getEntities();
+	this.getEntities({}, 3);
   }
 
-	getEntities(paginatorParams: PaginatorParams = {page: 1, perPage: 10}): void {
+	getEntities(paginatorParams: PaginatorParams = {page: 1, perPage: 10}, p: 1 | 2 | 3 ): void {
 		this._service.getList(this.searchTerms, paginatorParams).subscribe((response: any) => {
-			this.dataSource = new MatTableDataSource(response.data.data);
-			this.entitiesPaginated = response.data;
+            if(p === 1 || p === 3){
+                this.dataSource = new MatTableDataSource(response.data.data);
+                this.entitiesPaginated1 = response.data;
+            }
+            if(p === 2 || p === 3){
+                this.entitiesPaginated2 = response.data;
+            }
 		});
 	}
 
@@ -116,11 +117,11 @@ export class EntitiesListComponent<Entity> {
 		});
 	}
 
-    paginate(event: PaginatorEvent): void {
-		this.getEntities({page: event.pageIndex + 1, perPage: event.pageSize});
+    paginate(event: PaginatorEvent, p: 1 | 2): void {
+		this.getEntities({page: event.pageIndex + 1, perPage: event.pageSize}, p);
 	}
 
-    makeSearch(): void{
-        this.getEntities();
+    makeSearch(p: 1 | 2): void{
+        this.getEntities({page: 1, perPage: 10}, p);
     }
 }

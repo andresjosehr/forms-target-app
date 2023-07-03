@@ -8,6 +8,8 @@ import { FuseConfirmationService } from '@fuse/services/confirmation';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { Car } from '../car';
 import { CarService } from '../service/car.service';
+import { ManageCarComponent } from '../manage-car/manage-car.component';
+import { MatDialog } from '@angular/material/dialog';
 @Component({
   selector: 'app-cars-list',
   templateUrl: './cars-list.component.html',
@@ -17,6 +19,9 @@ import { CarService } from '../service/car.service';
     }
     ::ng-deep .search-form .mat-mdc-form-field-subscript-wrapper{
         display: none;
+    }
+    ::ng-deep .mat-mdc-table .mdc-data-table__row:not(.mdc-data-table__row--selected):hover{
+        background: #e3e3e3 !important;
     }
   `]
 })
@@ -31,6 +36,7 @@ export class CarsListComponent extends EntitiesListComponent<Car>{
     protected _service: CarService,
     protected _fuseConfirmationService: FuseConfirmationService,
     protected _matSnackBar: MatSnackBar,
+    protected dialog: MatDialog
   ) {
     const searchFormGroup = _formBuilder.group({
         searchString: [],
@@ -43,5 +49,17 @@ export class CarsListComponent extends EntitiesListComponent<Car>{
       return 0
     }
     return JSON.parse(files).length
+  }
+
+  manageEntity(id: string): void {
+    const dialogRef = this.dialog.open(ManageCarComponent, {
+        data: {
+            id: id,
+        },
+    });
+
+    dialogRef.afterClosed().subscribe(result => {
+      console.log(`Dialog result: ${result}`);
+    });
   }
 }
