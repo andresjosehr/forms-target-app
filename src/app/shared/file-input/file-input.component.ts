@@ -25,7 +25,13 @@ export class FileInputComponent implements OnInit {
         public dialog: MatDialog
     ) {}
 
-    ngOnInit(): void {}
+    ngOnInit(): void {
+        this.files.valueChanges.subscribe((f) => {
+            if(typeof f === 'string') {
+                this.files.setValue(JSON.parse(f), { emitEvent: false });
+            }
+        })
+    }
 
     selectFile(event: Event): void {
         const target = event.target as HTMLInputElement;
