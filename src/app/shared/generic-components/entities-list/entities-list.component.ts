@@ -16,6 +16,7 @@ import { MatSnackBar } from '@angular/material/snack-bar';
   template: '',
 })
 export class EntitiesListComponent<Entity> {
+    requestEvent: Subject<boolean> = new Subject();
 	dataSource: MatTableDataSource<any>;
 	entitiesPaginated1: any;
     entitiesPaginated2: any;
@@ -49,6 +50,10 @@ export class EntitiesListComponent<Entity> {
 	) { }
 
   ngOnInit(): void {
+
+    this.requestEvent.subscribe((response) => {
+        this.getEntities({}, 3);
+    });
 
 	this._activatedRoute.params.pipe(takeUntil(this._unsubscribeAll)).subscribe((params) => {
 		if (params.m) {

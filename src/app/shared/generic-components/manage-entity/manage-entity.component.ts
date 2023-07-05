@@ -7,7 +7,7 @@ import { HttpValidationErrorResponse } from 'app/interfaces/http-responses/http-
 import { GlobalService } from 'app/shared/services/global/global.service';
 import { MAT_DATE_FORMATS } from '@angular/material/core';
 
-import { takeUntil } from 'rxjs';
+import { Subject, takeUntil } from 'rxjs';
 import { MatSnackBar } from '@angular/material/snack-bar';
 
 @Component({
@@ -15,6 +15,7 @@ import { MatSnackBar } from '@angular/material/snack-bar';
     template: '',
 })
 export class ManageEntityComponent<Entity> {
+    afterRequest: Subject<any> = new Subject();
     alert: { type: FuseAlertType; message: string } = {
         type: 'success',
         message: '',
@@ -60,6 +61,7 @@ export class ManageEntityComponent<Entity> {
             .pipe()
             .subscribe(
                 (r) => {
+                    this.afterRequest.next(r);
                     this.entityFormGroup.enable();
                     // navigate with query params
                     // this._router.navigate([`/${this.dasherizedEntity}/lista`,{ m: 1 }]);
@@ -79,7 +81,8 @@ export class ManageEntityComponent<Entity> {
 
         // Sign in
         this._service
-            .update(this.entityID, this.entityFormGroup.value).pipe().subscribe(() => {
+            .update(this.entityID, this.entityFormGroup.value).pipe().subscribe((r) => {
+                    this.afterRequest.next(r);
                     this.entityFormGroup.enable();
                     this._globalService.openSnackBar(this._matSnackBar, `${this._singularEntity} actualizado correctamente`, 2500, 'success' );
                 },
