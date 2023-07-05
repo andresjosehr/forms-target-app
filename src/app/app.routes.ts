@@ -77,14 +77,7 @@ export const appRoutes: Route[] = [
             {path: 'example', loadChildren: () => import('app/modules/admin/example/example.routes')},
 
             /* Add new routes here */
-        { path: 'celulareses', loadChildren: () => import('app/phoness/phoness.module').then(m => m.PhonessModule) },
-      
-        { path: 'celulareses', loadChildren: () => import('app/phoness/phoness.module').then(m => m.PhonessModule) },
-      
-        { path: 'carro-2es', loadChildren: () => import('app/cars/cars.module').then(m => m.CarsModule) },
-      
-        { path: 'carros', loadChildren: () => import('app/cars/cars.module').then(m => m.CarsModule) },
-      
+
 
 
         ]
