@@ -5,15 +5,15 @@ import { ManageEntityComponent } from 'app/shared/generic-components/manage-enti
 import { GlobalService } from 'app/shared/services/global/global.service';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { MAT_DIALOG_DATA } from '@angular/material/dialog';
-import { Car } from '../car';
-import { CarService } from '../service/car.service';
+import { Phones } from '../phones';
+import { PhonesService } from '../service/phones.service';
 
 @Component({
-  selector: 'app-manage-car',
-  templateUrl: './manage-car.component.html',
+  selector: 'app-manage-phones',
+  templateUrl: './manage-phones.component.html',
 })
-export class ManageCarComponent extends ManageEntityComponent<Car> implements OnInit {
-    carFormGroup: FormGroup;
+export class ManagePhonesComponent extends ManageEntityComponent<Phones> implements OnInit {
+    phonesFormGroup: FormGroup;
 
     constructor(
       protected _globalService: GlobalService,
@@ -21,18 +21,15 @@ export class ManageCarComponent extends ManageEntityComponent<Car> implements On
 		  protected _formBuilder: FormBuilder,
 		  protected _router: Router,
       protected _matSnackBar: MatSnackBar,
-      protected _service: CarService,
+      protected _service: PhonesService,
       @Inject(MAT_DIALOG_DATA) public data: {id: string | null},
 
     ) {
         const entityFormGroup = _formBuilder.group({
-            kilometraje: [, [Validators.max(100), Validators.max(100), Validators.min(10)]], // 3uidq53ivueagcfrbm39
-            color: [], // oaa3rnfrhzrk33f9fesy
-            placa: [], // wk471vrng3oquxnzbkbc
-            owner: [], // sspe97d6bu819tilbypj
-            asientos: [], // y2x4zsjiw3ngzsby5oey
+            name: [, [Validators.required]], // 9y8kt5hifw3od8fz4nqy
+            brand: [], // ilfbgdqi0b759bhr29k5
         });
-        super(_globalService, _activateRoute, _formBuilder, _router, _matSnackBar, entityFormGroup, _service, data, 'Carros', 'Carro');
+        super(_globalService, _activateRoute, _formBuilder, _router, _matSnackBar, entityFormGroup, _service, data, 'Celulareses', 'Celulares');
     }
     ngOnInit(): void {
 

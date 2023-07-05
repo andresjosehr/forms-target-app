@@ -3,8 +3,8 @@
                     <!-- Section -->
                     <div class="grid sm:grid-cols-2 gap-8 w-full mb-8">
                         <div class="w-full col-span-1">
-                                <div class="text-3xl font-bold">Crear carro-2</div>
-                                <div class="text-secondary">Ingresa la informacion para crear un carro-2</div>
+                                <div class="text-3xl font-bold">Crear carro</div>
+                                <div class="text-secondary">Ingresa la informacion para crear un carro</div>
                         </div>
                         <div class="col-span-1 relative">
                         </div>
@@ -25,6 +25,82 @@
                                   <mat-error *ngFor="let i of _globalService.errorsLength(entityFormGroup.get('kilometraje'))">
                                     <ng-container *ngIf="entityFormGroup.get('kilometraje').hasError(i)">
                                       {{ entityFormGroup.get('kilometraje').errors[i] }}
+                                    </ng-container>
+                                  </mat-error>
+
+                            </mat-form-field>
+
+                        </div>
+
+                      <!-- oaa3rnfrhzrk33f9fesy -->
+
+                        <div class="col-span-1">
+
+                            <mat-form-field class="w-full">
+                                <mat-label>Color</mat-label>
+
+                                  <mat-select id='color' formControlName="color">
+
+                                      <mat-option value="Azul">Azul </mat-option>
+                                      <mat-option value="Rojo">Rojo </mat-option>
+
+                                  </mat-select>
+
+                                <!--  -->
+
+                                  <mat-error *ngFor="let i of _globalService.errorsLength(entityFormGroup.get('color'))">
+                                    <ng-container *ngIf="entityFormGroup.get('color').hasError(i)">
+                                      {{ entityFormGroup.get('color').errors[i] }}
+                                    </ng-container>
+                                  </mat-error>
+
+                            </mat-form-field>
+
+                        </div>
+
+                      <!-- wk471vrng3oquxnzbkbc -->
+
+                        <div class="col-span-1">
+
+                            <mat-form-field class="w-full">
+                                <mat-label>Placa</mat-label>
+
+                                  <input id='placa' type="text" formControlName="placa" matInput>
+
+                                <!--  -->
+
+                                  <mat-error *ngFor="let i of _globalService.errorsLength(entityFormGroup.get('placa'))">
+                                    <ng-container *ngIf="entityFormGroup.get('placa').hasError(i)">
+                                      {{ entityFormGroup.get('placa').errors[i] }}
+                                    </ng-container>
+                                  </mat-error>
+
+                            </mat-form-field>
+
+                        </div>
+
+                      <!-- sspe97d6bu819tilbypj -->
+
+                        <div class="col-span-2">
+
+                              <file-input [label]='"Fotos del dueño"' [files]="entityFormGroup.get('owner')"></file-input>
+
+                        </div>
+
+                      <!-- y2x4zsjiw3ngzsby5oey -->
+
+                        <div class="col-span-1">
+
+                            <mat-form-field class="w-full">
+                                <mat-label>Asientos</mat-label>
+
+                                  <input id='asientos' type="number" formControlName="asientos" matInput>
+
+                                <!--  -->
+
+                                  <mat-error *ngFor="let i of _globalService.errorsLength(entityFormGroup.get('asientos'))">
+                                    <ng-container *ngIf="entityFormGroup.get('asientos').hasError(i)">
+                                      {{ entityFormGroup.get('asientos').errors[i] }}
                                     </ng-container>
                                   </mat-error>
 

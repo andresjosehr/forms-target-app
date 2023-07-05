@@ -1,9 +1,9 @@
 <div class="w-full p-10">
   <div class="grid grid-cols-1 sm:grid-cols-2 gap-8 w-full">
     <div class="w-full col-span-1">
-      <div class="text-3xl font-bold">Carros</div>
+      <div class="text-3xl font-bold">Celulareses</div>
       <div class="text-secondary">
-        Una lista de carros registradas en el
+        Una lista de celulareses registradas en el
         sistema
       </div>
     </div>
@@ -14,7 +14,7 @@
           class="w-full sm:w-fit rounded mr-1 px-3 bg-primary-300 text-on-primary-300"
           mat-stroked-button
         >
-          Crear carro
+          Crear celulares
         </button>
       </div>
     </div>
@@ -22,7 +22,7 @@
       <!-- Success -->
       <fuse-alert *ngIf="m" [type]="'success'">
         <span fuseAlertTitle>Exito</span>
-        El/la carro ha sido
+        El/la celulares ha sido
         <span *ngIf="m === '1'">creado</span>
         <span *ngIf="m === '2'">actualizado</span>
         exitosamente
@@ -41,99 +41,35 @@
         mat-table
         [dataSource]="dataSource"
       >
-        <!-- 530kie0chx23ey98x534 column -->
-        <ng-container matColumnDef="id">
+        <!-- 9y8kt5hifw3od8fz4nqy column -->
+        <ng-container matColumnDef="name">
           <th mat-header-cell *matHeaderCellDef>
-            ID
+            Nombre
           </th>
           <td
             data-label="Dirección"
             mat-cell
-            *matCellDef="let car"
+            *matCellDef="let phones"
             class="px-4"
           >
             <span class="font-medium">
-              {{car.id || "-"}}
+              {{phones.name || "-"}}
             </span>
           </td>
         </ng-container>
-        <!-- 3uidq53ivueagcfrbm39 column -->
-        <ng-container matColumnDef="kilometraje">
+        <!-- ilfbgdqi0b759bhr29k5 column -->
+        <ng-container matColumnDef="brand">
           <th mat-header-cell *matHeaderCellDef>
-            Kilometraje
+            Marca
           </th>
           <td
             data-label="Dirección"
             mat-cell
-            *matCellDef="let car"
+            *matCellDef="let phones"
             class="px-4"
           >
             <span class="font-medium">
-              {{car.kilometraje || "-"}}
-            </span>
-          </td>
-        </ng-container>
-        <!-- oaa3rnfrhzrk33f9fesy column -->
-        <ng-container matColumnDef="color">
-          <th mat-header-cell *matHeaderCellDef>
-            Color
-          </th>
-          <td
-            data-label="Dirección"
-            mat-cell
-            *matCellDef="let car"
-            class="px-4"
-          >
-            <span class="font-medium">
-              {{car.color || "-"}}
-            </span>
-          </td>
-        </ng-container>
-        <!-- wk471vrng3oquxnzbkbc column -->
-        <ng-container matColumnDef="placa">
-          <th mat-header-cell *matHeaderCellDef>
-            Placa
-          </th>
-          <td
-            data-label="Dirección"
-            mat-cell
-            *matCellDef="let car"
-            class="px-4"
-          >
-            <span class="font-medium">
-              {{car.placa || "-"}}
-            </span>
-          </td>
-        </ng-container>
-        <!-- sspe97d6bu819tilbypj column -->
-        <ng-container matColumnDef="owner">
-          <th mat-header-cell *matHeaderCellDef>
-            Fotos del dueño
-          </th>
-          <td
-            data-label="Dirección"
-            mat-cell
-            *matCellDef="let car"
-            class="px-4"
-          >
-            <span class="font-medium">
-              {{getFileCounts(car.owner)}}
-            </span>
-          </td>
-        </ng-container>
-        <!-- y2x4zsjiw3ngzsby5oey column -->
-        <ng-container matColumnDef="asientos">
-          <th mat-header-cell *matHeaderCellDef>
-            Asientos
-          </th>
-          <td
-            data-label="Dirección"
-            mat-cell
-            *matCellDef="let car"
-            class="px-4"
-          >
-            <span class="font-medium">
-              {{car.asientos || "-"}}
+              {{phones.brand || "-"}}
             </span>
           </td>
         </ng-container>
@@ -144,19 +80,19 @@
           <td
             data-label="Acciones"
             mat-cell
-            *matCellDef="let car"
+            *matCellDef="let phones"
           >
             <div class="flex justify-end gap-2">
               <div class="1/2">
                 <mat-icon
-                  (click)="manageEntity(car.id)"
+                  (click)="manageEntity(phones.id)"
                   class="text-on-primary-300 cursor-pointer"
                   >edit</mat-icon
                 >
               </div>
               <div class="1/2">
                 <mat-icon
-                  (click)="confirmDestroy(car.id)"
+                  (click)="confirmDestroy(phones.id)"
                   class="text-red-500 cursor-pointer"
                   >delete</mat-icon
                 >
@@ -192,54 +128,32 @@
   >
     <div
       style="width: calc(25% - 20px)"
-      *ngFor="let car of entitiesPaginated2?.data"
+      *ngFor="let phones of entitiesPaginated2?.data"
     >
     <div
-    (click)="manageEntity(car.id)"
+    (click)="manageEntity(phones.id)"
     class="bg-card shadow rounded-2xl p-4 cursor-pointer transition ease-in-out hover:scale-105 duration-300"
 >
     <div class="flex gap-2">
 
                 <div class="text-left" style="width: calc(50% - 8px)">
-                    <div class="text-xs">ID</div>
+                    <div class="text-xs">Nombre</div>
                     <div class="text-base">
-                        {{car.id || "-"}}
+                        {{phones.name || "-"}}
                     </div>
                 </div>
 
                 <div class="text-right" style="width: calc(50% - 8px)">
-                    <div class="text-xs">Kilometraje</div>
+                    <div class="text-xs">Marca</div>
                     <div class="text-base">
-                        {{car.kilometraje || "-"}}
+                        {{phones.brand || "-"}}
                     </div>
                 </div>
 
     </div>
     <hr class="my-1" />
 
-            <div>
-                <img
-                    class="w-full"
-                    [src]="getImages(car.owner)"
-                />
-            </div>
-        <hr class="my-1" />
-
     <div class="flex gap-2">
-
-                <div class="text-left" style="width: calc(50% - 8px)">
-                    <div class="text-xs">Color</div>
-                    <div class="text-base">
-                        {{car.color || "-"}}
-                    </div>
-                </div>
-
-                <div class="text-right" style="width: calc(50% - 8px)">
-                    <div class="text-xs">Placa</div>
-                    <div class="text-base">
-                        {{car.placa || "-"}}
-                    </div>
-                </div>
 
     </div>
 </div>

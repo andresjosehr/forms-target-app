@@ -7,13 +7,13 @@ import { GlobalService } from 'app/shared/services/global/global.service';
 import { FuseConfirmationService } from '@fuse/services/confirmation';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { MatDialog } from '@angular/material/dialog';
-import { Car } from '../car';
-import { CarService } from '../service/car.service';
-import { ManageCarComponent } from '../manage-car/manage-car.component';
+import { Phones } from '../phones';
+import { PhonesService } from '../service/phones.service';
+import { ManagePhonesComponent } from '../manage-phones/manage-phones.component';
 
 @Component({
-  selector: 'app-cars-list',
-  templateUrl: './cars-list.component.html',
+  selector: 'app-phoness-list',
+  templateUrl: './phoness-list.component.html',
   styles: [`
     ::ng-deep .search-form .mat-mdc-text-field-wrapper{
         background-color: #fff;
@@ -26,28 +26,25 @@ import { ManageCarComponent } from '../manage-car/manage-car.component';
     }
   `]
 })
-export class CarsListComponent extends EntitiesListComponent<Car>{
-  columns: Array<string> = [ 'id', 'kilometraje', 'color', 'placa', 'owner', 'asientos', 'actions'];
+export class PhonessListComponent extends EntitiesListComponent<Phones>{
+  columns: Array<string> = [ 'name', 'brand', 'actions'];
   constructor(
     protected _activatedRoute: ActivatedRoute,
     protected _router: Router,
     protected _formBuilder: FormBuilder,
     protected _globalService: GlobalService,
     protected _userService: UserService,
-    protected _service: CarService,
+    protected _service: PhonesService,
     protected _fuseConfirmationService: FuseConfirmationService,
     protected _matSnackBar: MatSnackBar,
     protected dialog: MatDialog
   ) {
     const searchFormGroup = _formBuilder.group({
         searchString: [],
-            kilometraje: [], // 3uidq53ivueagcfrbm39
-            color: [], // oaa3rnfrhzrk33f9fesy
-            placa: [], // wk471vrng3oquxnzbkbc
-            owner: [], // sspe97d6bu819tilbypj
-            asientos: [], // y2x4zsjiw3ngzsby5oey
+            name: [], // 9y8kt5hifw3od8fz4nqy
+            brand: [], // ilfbgdqi0b759bhr29k5
     });
-    super(_activatedRoute, _router, _formBuilder, _globalService, _userService, _fuseConfirmationService, _matSnackBar, searchFormGroup, _service, 'Carros', 'Carro');
+    super(_activatedRoute, _router, _formBuilder, _globalService, _userService, _fuseConfirmationService, _matSnackBar, searchFormGroup, _service, 'Celulareses', 'Celulares');
   }
   getFileCounts(files: string): number{
     if(!files){
@@ -56,11 +53,10 @@ export class CarsListComponent extends EntitiesListComponent<Car>{
     return JSON.parse(files).length
   }
   manageEntity(id: string): void {
-    const dialogRef = this.dialog.open(ManageCarComponent, {
+    const dialogRef = this.dialog.open(ManagePhonesComponent, {
         data: {
             id: id,
         },
-        maxHeight: "90vh",
     });
     dialogRef.afterClosed().subscribe(result => {
       console.log(`Dialog result: ${result}`);

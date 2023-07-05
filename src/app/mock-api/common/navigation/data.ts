@@ -19,7 +19,18 @@ const navigation: FuseNavigationItem[] = [
       },
       // End 1yqmy71zh6ccwjtn6mgx
 
+       // Begin null
+      {
+         id   : 'phoness',
+         title: 'Celulareses',
+         type : 'basic',
+         // icon : 'email',
+         link  : '/celulareses'
+      },
+      // End null
+
        /* Add new menu items here */
+     
      
 
 

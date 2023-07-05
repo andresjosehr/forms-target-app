@@ -1,6 +1,6 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { CarsListComponent } from './cars-list.component';
+import { PhonessListComponent } from './phoness-list.component';
 import { MatPaginatorModule } from '@angular/material/paginator';
 import { MatTableModule } from '@angular/material/table';
 import { RouterModule } from '@angular/router';
@@ -15,7 +15,7 @@ import {MatDialogModule} from '@angular/material/dialog';
 
 @NgModule({
   declarations: [
-    CarsListComponent
+    PhonessListComponent
   ],
   imports: [
     CommonModule,
@@ -34,4 +34,4 @@ import {MatDialogModule} from '@angular/material/dialog';
     MatDialogModule
   ]
 })
-export class CarsListModule { }
+export class PhonessListModule { }
