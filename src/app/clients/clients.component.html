@@ -1,0 +1,164 @@
+
+    <!-- [formGroup]="_searchFormGroup" -->
+
+    <div class="grid grid-cols-8 py-8 px-6 gap-x-4 bg-card shadow rounded-2xl overflow-hidden" [formGroup]="clientFG">
+        <div class="col-span-8 text-3xl font-bold mb-4">{{client ? "Cliente seleccionado: "+client.first_name : "Selecciona un cliente"}}</div>
+        <div class="col-span-2">
+            <mat-form-field class="w-full" appearance="outline">
+                <mat-label>Nombres</mat-label>
+                <input matInput placeholder="Nombres" formControlName="first_name" [matAutocomplete]="first_name" />
+                <mat-autocomplete autoActiveFirstOption #first_name="matAutocomplete">
+                    <mat-option (click)="selectOption(option)" *ngFor="let option of options.first_name" [value]="option.first_name">
+                        {{option.first_name}}
+                    </mat-option>
+                </mat-autocomplete>
+            </mat-form-field>
+        </div>
+        <div class="col-span-2">
+            <mat-form-field class="w-full" appearance="outline">
+                <mat-label>Apellidos</mat-label>
+                <input matInput placeholder="Apellidos" formControlName="last_name" [matAutocomplete]="last_name" />
+                <mat-autocomplete autoActiveFirstOption #last_name="matAutocomplete">
+                    <mat-option (click)="selectOption(option)" *ngFor="let option of options.last_name" [value]="option.last_name">
+                        {{option.last_name}}
+                    </mat-option>
+                </mat-autocomplete>
+            </mat-form-field>
+        </div>
+        <div class="col-span-2">
+            <mat-form-field class="w-full" appearance="outline">
+                <mat-label>Cedula</mat-label>
+                <input matInput placeholder="Cedula" formControlName="dni" [matAutocomplete]="dni" />
+                <mat-autocomplete autoActiveFirstOption #dni="matAutocomplete">
+                    <mat-option (click)="selectOption(option)" *ngFor="let option of options.dni" [value]="option.dni">
+                        {{option.dni}}
+                    </mat-option>
+                </mat-autocomplete>
+            </mat-form-field>
+        </div>
+        <div class="col-span-2">
+            <mat-form-field class="w-full" appearance="outline">
+                <mat-label>Codigo cliente</mat-label>
+                <input matInput placeholder="Correo" formControlName="client_code" [matAutocomplete]="client_code" />
+                <mat-autocomplete autoActiveFirstOption #client_code="matAutocomplete">
+                    <mat-option (click)="selectOption(option)" *ngFor="let option of options.client_code" [value]="option.client_code">
+                        {{option.client_code}}
+                    </mat-option>
+                </mat-autocomplete>
+            </mat-form-field>
+        </div>
+
+        <div class="col-span-2">
+            <mat-form-field class="w-full" appearance="outline">
+                <mat-label>Dirección</mat-label>
+                <input matInput placeholder="Correo" formControlName="address" [matAutocomplete]="address" />
+                <mat-autocomplete autoActiveFirstOption #address="matAutocomplete">
+                    <mat-option (click)="selectOption(option)" *ngFor="let option of options.address" [value]="option.address">
+                        {{option.address}}
+                    </mat-option>
+                </mat-autocomplete>
+            </mat-form-field>
+        </div>
+
+        <div class="col-span-2">
+            <mat-form-field class="w-full" appearance="outline">
+                <mat-label>Barrio</mat-label>
+                <input matInput placeholder="Correo" formControlName="neighborhood" [matAutocomplete]="neighborhood" />
+                <mat-autocomplete autoActiveFirstOption #neighborhood="matAutocomplete">
+                    <mat-option (click)="selectOption(option)" *ngFor="let option of options.neighborhood" [value]="option.neighborhood">
+                        {{option.neighborhood}}
+                    </mat-option>
+                </mat-autocomplete>
+            </mat-form-field>
+        </div>
+
+        <div class="col-span-2">
+            <mat-form-field class="w-full" appearance="outline">
+                <mat-label>Ciudad</mat-label>
+                <input matInput placeholder="Correo" formControlName="city" [matAutocomplete]="city" />
+                <mat-autocomplete autoActiveFirstOption #city="matAutocomplete">
+                    <mat-option (click)="selectOption(option)" *ngFor="let option of options.city" [value]="option.city">
+                        {{option.city}}
+                    </mat-option>
+                </mat-autocomplete>
+            </mat-form-field>
+        </div>
+
+        <div class="col-span-2">
+            <mat-form-field class="w-full" appearance="outline">
+                <mat-label>Telefono</mat-label>
+                <input matInput placeholder="Correo" formControlName="phone" [matAutocomplete]="phone" />
+                <mat-autocomplete autoActiveFirstOption #phone="matAutocomplete">
+                    <mat-option (click)="selectOption(option)" *ngFor="let option of options.phone" [value]="option.phone">
+                        {{option.phone}}
+                    </mat-option>
+                </mat-autocomplete>
+            </mat-form-field>
+        </div>
+
+
+        <div class="col-span-2">
+            <mat-form-field class="w-full" appearance="outline">
+                <mat-label>Capaña</mat-label>
+                <input matInput placeholder="Correo" formControlName="campaign" [matAutocomplete]="campaign" />
+                <mat-autocomplete autoActiveFirstOption #campaign="matAutocomplete">
+                    <mat-option (click)="selectOption(option)" *ngFor="let option of options.campaign" [value]="option.campaign">
+                        {{option.campaign}}
+                    </mat-option>
+                </mat-autocomplete>
+            </mat-form-field>
+        </div>
+
+        <div class="col-span-1">
+            <mat-form-field class="w-full" appearance="outline">
+                <mat-label>Zona</mat-label>
+                <input matInput placeholder="Correo" formControlName="zip_code" [matAutocomplete]="zip_code" />
+                <mat-autocomplete autoActiveFirstOption #zip_code="matAutocomplete">
+                    <mat-option (click)="selectOption(option)" *ngFor="let option of options.zip_code" [value]="option.zip_code">
+                        {{option.zip_code}}
+                    </mat-option>
+                </mat-autocomplete>
+            </mat-form-field>
+        </div>
+
+        <div class="col-span-1">
+            <mat-form-field class="w-full" appearance="outline">
+                <mat-label>Cupo</mat-label>
+                <input matInput placeholder="Correo" formControlName="quota" [matAutocomplete]="quota" />
+                <mat-autocomplete autoActiveFirstOption #quota="matAutocomplete">
+                    <mat-option (click)="selectOption(option)" *ngFor="let option of options.quota" [value]="option.quota">
+                        {{option.quota}}
+                    </mat-option>
+                </mat-autocomplete>
+            </mat-form-field>
+        </div>
+
+        <div class="col-span-1">
+            <mat-form-field class="w-full" appearance="outline">
+                <mat-label>Saldo</mat-label>
+                <input matInput placeholder="Correo" formControlName="balance" [matAutocomplete]="balance" />
+                <mat-autocomplete autoActiveFirstOption #balance="matAutocomplete">
+                    <mat-option (click)="selectOption(option)" *ngFor="let option of options.balance" [value]="option.balance">
+                        {{option.balance}}
+                    </mat-option>
+                </mat-autocomplete>
+            </mat-form-field>
+        </div>
+
+        <div class="col-span-1">
+            <mat-form-field class="w-full" appearance="outline">
+                <mat-label>Puntos disponibles</mat-label>
+                <input matInput placeholder="Correo" formControlName="available_points" [matAutocomplete]="available_points" />
+                <mat-autocomplete autoActiveFirstOption #available_points="matAutocomplete">
+                    <mat-option (click)="selectOption(option)" *ngFor="let option of options.available_points" [value]="option.available_points">
+                        {{option.available_points}}
+                    </mat-option>
+                </mat-autocomplete>
+            </mat-form-field>
+        </div>
+        <div class="col-span-2" *ngIf="client">
+            <button (click)="removeClient()" class="bg-red-400 text-white rounded w-full" mat-flat-button>Elegir Otro cliente</button>
+        </div>
+
+    </div>
+

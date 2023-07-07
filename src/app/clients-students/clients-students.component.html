@@ -1,0 +1,140 @@
+
+<div class="w-full p-10">
+
+    <div>
+        <app-clients (clientSelected)="selectClient($event)"></app-clients>
+    </div>
+
+    <div>
+    <div class="bg-card shadow rounded-2xl overflow-hidden py-8 px-6 mt-6">
+        <div class="text-3xl font-bold">Detalles del pedido</div>
+        <div class="grid grid-cols-4 gap-3 mt-4">
+            <div class="col-span-1">
+                <mat-form-field class="w-full">
+                    <mat-label>Codigo venta</mat-label>
+                    <input type="text" matInput placeholder="Codigo venta">
+                </mat-form-field>
+            </div>
+            <div class="col-span-1">
+                <mat-form-field class="w-full">
+                    <mat-label>Precio venta</mat-label>
+                    <input type="text" matInput placeholder="Codigo venta">
+                </mat-form-field>
+            </div>
+            <div class="col-span-1">
+                <mat-form-field class="w-full">
+                    <mat-label>Nombre Producto</mat-label>
+                    <input type="text" matInput placeholder="Codigo venta">
+                </mat-form-field>
+            </div>
+            <div class="col-span-1">
+                <mat-form-field class="w-full">
+                    <mat-label>Cantidad</mat-label>
+                    <input type="text" matInput placeholder="Codigo venta">
+                </mat-form-field>
+            </div>
+            <div class="col-span-4">
+                <button class="bg-cyan-800 text-white w-full rounded" mat-button>Guardar</button>
+            </div>
+        </div>
+    </div>
+    <div class="sm:col-span- flex flex-col flex-auto py-2 px-6 bg-card shadow rounded-2xl overflow-hidden mt-4">
+        <!-- Section -->
+        <div class="flex flex-col flex-auto mt-2 overflow-x-auto max-h-100">
+        <table
+            class="md:min-w-240 overflow-y-visible"
+            mat-table
+            [dataSource]="dataSource"
+        >
+
+            <!-- nkoekvb1k1lho8hmtt6m column -->
+            <ng-container matColumnDef="name">
+            <th mat-header-cell *matHeaderCellDef>
+                Nombre
+            </th>
+            <td
+                data-label="Dirección"
+                mat-cell
+                *matCellDef="let student"
+                class="px-4"
+            >
+                <span class="font-medium">
+                {{student.name || "-"}}
+                </span>
+            </td>
+            </ng-container>
+
+            <!-- 40bqipme6o5pyth6iwmr column -->
+            <ng-container matColumnDef="dni">
+            <th mat-header-cell *matHeaderCellDef>
+                Cedula
+            </th>
+            <td
+                data-label="Dirección"
+                mat-cell
+                *matCellDef="let student"
+                class="px-4"
+            >
+                <span class="font-medium">
+                {{student.dni || "-"}}
+                </span>
+            </td>
+            </ng-container>
+
+            <!-- Acciones -->
+            <ng-container matColumnDef="actions">
+            <th mat-header-cell *matHeaderCellDef>Acciones</th>
+            <td
+                data-label="Acciones"
+                mat-cell
+                *matCellDef="let student"
+            >
+                <div class="flex justify-end gap-2">
+                <div class="1/2">
+                    <mat-icon
+                    (click)="manageEntity(student.id)"
+                    class="text-on-primary-300 cursor-pointer"
+                    >edit</mat-icon
+                    >
+                </div>
+                <div class="1/2">
+                    <mat-icon
+                    (click)="confirmDestroy(student.id)"
+                    class="text-red-500 cursor-pointer"
+                    >delete</mat-icon
+                    >
+                </div>
+                </div>
+            </td>
+            </ng-container>
+            <tr
+            class="h-9"
+            mat-header-row
+            *matHeaderRowDef="columns; sticky: true"
+            ></tr>
+            <tr
+            class="h-6 hover-tabla"
+            mat-row
+            *matRowDef="let row; columns: columns"
+            ></tr>
+        </table>
+        <!-- <mat-paginator
+            [length]="entitiesPaginated1?.total"
+            [pageSize]="entitiesPaginated1?.per_page"
+            [pageSizeOptions]="[10, 25, 100]"
+            (page)="paginate($event, 1)"
+            aria-label="Select page"
+        >
+        </mat-paginator> -->
+        </div>
+        </div>
+        <!-- <mat-paginator
+            [length]="entitiesPaginated2?.total"
+            [pageSize]="entitiesPaginated2?.per_page"
+            [pageSizeOptions]="[10, 25, 100]"
+            (page)="paginate($event, 2)"
+            aria-label="Select page"
+        >
+        </mat-paginator> -->
+        </div>
+</div>
