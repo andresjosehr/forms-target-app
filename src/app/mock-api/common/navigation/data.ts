@@ -22,10 +22,10 @@ const navigation: FuseNavigationItem[] = [
 
       {
         id   : 'students',
-        title: 'Clientes - Estudiantes',
+        title: 'Ordenes',
         type : 'basic',
         // icon : 'email',
-        link  : '/clientes-estudiantes'
+        link  : '/ordenes'
      },
 
        /* Add new menu items here */

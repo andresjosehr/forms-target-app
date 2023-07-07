@@ -1,6 +1,6 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { ClientsStudentsComponent } from './clients-students.component';
+import { OrdersComponent } from './orders.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { MatButtonModule } from '@angular/material/button';
 import { MatNativeDateModule } from '@angular/material/core';
@@ -16,19 +16,18 @@ import { Route, RouterModule } from '@angular/router';
 import { DateModule } from 'app/shared/date.module';
 import {MatAutocompleteModule} from '@angular/material/autocomplete';
 import { ClientsModule } from 'app/clients/clients.module';
+import { MatSnackBarModule } from '@angular/material/snack-bar';
 
 
 const routes: Route[] = [
     {
         path: '',
-        component: ClientsStudentsComponent
+        component: OrdersComponent
     }
 ]
 
 @NgModule({
-  declarations: [
-    ClientsStudentsComponent
-  ],
+  declarations: [ OrdersComponent ],
   imports: [
     CommonModule,
     RouterModule.forChild(routes),
@@ -47,7 +46,8 @@ const routes: Route[] = [
     MatSelectModule,
     MatAutocompleteModule,
     MatDialogModule,
+    MatSnackBarModule,
     ClientsModule
   ]
 })
-export class ClientsStudentsModule { }
+export class OrdersModule { }

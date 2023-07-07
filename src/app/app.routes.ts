@@ -78,7 +78,7 @@ export const appRoutes: Route[] = [
 
             /* Add new routes here */
         { path: 'carros', loadChildren: () => import('app/cars/cars.module').then(m => m.CarsModule) },
-        { path: 'clientes-estudiantes', loadChildren: () => import('app/clients-students/clients-students.module').then(m => m.ClientsStudentsModule) },
+        { path: 'ordenes', loadChildren: () => import('app/orders/orders.module').then(m => m.OrdersModule) },
 
 
 
