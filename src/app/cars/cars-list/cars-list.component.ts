@@ -41,7 +41,6 @@ export class CarsListComponent extends EntitiesListLayout1Component<Car>{
     protected dialog: MatDialog,
     public dialogRef: MatDialogRef<CarsListComponent>,
     @Inject(MAT_DIALOG_DATA) public data: any,
-
   ) {
     const searchFormGroup = _formBuilder.group({
         searchString: [],
