@@ -1,4 +1,4 @@
-<div class="w-full p-10">
+<div class="w-full p-10" *ngIf="!isChild">
   <div class="grid grid-cols-1 sm:grid-cols-2 gap-8 w-full">
     <div class="w-full col-span-1">
       <div class="text-3xl font-bold">Carros</div>
@@ -29,7 +29,9 @@
       </fuse-alert>
     </div>
   </div>
+
   <div
+
     [formGroup]="_searchFormGroup"
     class="grid grid-cols-11 gap-2 items-center search-form"
   >
@@ -176,4 +178,67 @@
     aria-label="Select page"
   >
   </mat-paginator>
+</div>
+
+
+
+
+
+
+<div *ngIf="isChild">
+  <div [formGroup]="_searchFormGroup"class="grid grid-cols-11 gap-2 items-center search-form">
+    <div class="col-span-11 text-3xl font-bold mb-4">Selecciona un carro</div>
+    <!-- mrg2px5qez9xrbgy8d4v search field -->
+    <div class="col-span-2">
+      <mat-form-field class="w-full" appearance="outline">
+        <mat-label>Nombre</mat-label>
+        <input id="name" type="text" formControlName="name" matInput />
+      </mat-form-field>
+    </div>
+    <div class="col-span-2">
+      <mat-form-field class="w-full" appearance="outline">
+        <mat-label>Termino</mat-label>
+        <input matInput formControlName="searchString" />
+      </mat-form-field>
+    </div>
+    <div class="col-span-1 text-left">
+      <button (click)="makeSearch(1)" mat-mini-fab>
+        <mat-icon aria-label="Example icon-button with a heart icon">search</mat-icon>
+      </button>
+    </div>
+  </div>
+  <div class="sm:col-span-6 flex flex-col flex-auto py-2 px-6 bg-card shadow rounded-2xl overflow-hidden">
+    <!-- Section -->
+    <div class="flex flex-col flex-auto mt-2 overflow-x-auto max-h-100">
+      <table class="md:min-w-240 overflow-y-visible" mat-table [dataSource]="dataSource">
+
+        <!-- mrg2px5qez9xrbgy8d4v column -->
+        <ng-container matColumnDef="name">
+          <th mat-header-cell *matHeaderCellDef> Nombre </th>
+          <td data-label="Dirección" mat-cell *matCellDef="let car" class="px-4">
+            <span class="font-medium">
+              {{car.name || "-"}}
+            </span>
+          </td>
+        </ng-container>
+
+        <!-- Acciones -->
+        <ng-container matColumnDef="actions">
+          <th mat-header-cell *matHeaderCellDef class="hidden">Acciones</th>
+          <td class="hidden" data-label="Acciones" mat-cell *matCellDef="let car"></td>
+        </ng-container>
+
+        <tr class="h-9" mat-header-row *matHeaderRowDef="columns; sticky: true"></tr>
+        <tr (click)="selectEntity(row)" class="h-6 hover-tabla cursor-pointer" mat-row *matRowDef="let row; columns: columns"></tr>
+      </table>
+      <mat-paginator
+        [length]="entitiesPaginated1?.total"
+        [pageSize]="entitiesPaginated1?.per_page"
+        [pageSizeOptions]="[10, 25, 100]"
+        (page)="paginate($event, 1)"
+        aria-label="Select page"
+      >
+      </mat-paginator>
+    </div>
+  </div>
 </div>

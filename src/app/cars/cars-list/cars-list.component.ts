@@ -1,12 +1,12 @@
-import { Component } from '@angular/core';
+import { Component, Inject } from '@angular/core';
 import { FormBuilder } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
 import { UserService } from 'app/core/user/user.service';
-import { EntitiesListComponent } from 'app/shared/generic-components/entities-list/entities-list.component';
+import { EntitiesListLayout1Component } from 'app/shared/generic-components/entities-list/entities-list-layout-1.component';
 import { GlobalService } from 'app/shared/services/global/global.service';
 import { FuseConfirmationService } from '@fuse/services/confirmation';
 import { MatSnackBar } from '@angular/material/snack-bar';
-import { MatDialog } from '@angular/material/dialog';
+import { MAT_DIALOG_DATA, MatDialog, MatDialogRef } from '@angular/material/dialog';
 import { Car } from '../car';
 import { CarService } from '../service/car.service';
 import { ManageCarComponent } from '../manage-car/manage-car.component';
@@ -26,8 +26,9 @@ import { ManageCarComponent } from '../manage-car/manage-car.component';
     }
   `]
 })
-export class CarsListComponent extends EntitiesListComponent<Car>{
+export class CarsListComponent extends EntitiesListLayout1Component<Car>{
   columns: Array<string> = [ 'name', 'actions'];
+  isChild: boolean = false;
   constructor(
     protected _activatedRoute: ActivatedRoute,
     protected _router: Router,
@@ -37,13 +38,17 @@ export class CarsListComponent extends EntitiesListComponent<Car>{
     protected _service: CarService,
     protected _fuseConfirmationService: FuseConfirmationService,
     protected _matSnackBar: MatSnackBar,
-    protected dialog: MatDialog
+    protected dialog: MatDialog,
+    public dialogRef: MatDialogRef<CarsListComponent>,
+    @Inject(MAT_DIALOG_DATA) public data: any,
+
   ) {
     const searchFormGroup = _formBuilder.group({
         searchString: [],
             name: [], // mrg2px5qez9xrbgy8d4v
     });
     super(_activatedRoute, _router, _formBuilder, _globalService, _userService, _fuseConfirmationService, _matSnackBar, searchFormGroup, _service, 'Carros', 'Carro');
+    this.isChild = data.isChild;
   }
   getFileCounts(files: string): number{
     if(!files){
@@ -66,4 +71,9 @@ export class CarsListComponent extends EntitiesListComponent<Car>{
   getImages(files: string): string{
     return JSON.parse(files)[0]['fileBase64'];
   }
+
+  selectEntity(entity: Car): void{
+    this.dialogRef.close(entity);
+  }
+
 }

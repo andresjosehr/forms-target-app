@@ -14,7 +14,7 @@ import { MatSnackBar } from '@angular/material/snack-bar';
     selector: 'app-manage-entity',
     template: '',
 })
-export class ManageEntityComponent<Entity> {
+export class ManageEntityLayout1Component<Entity> {
     afterRequest: Subject<any> = new Subject();
     alert: { type: FuseAlertType; message: string } = {
         type: 'success',

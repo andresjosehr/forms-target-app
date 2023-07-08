@@ -1,7 +1,7 @@
 import { Component, OnInit, Inject } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
-import { ManageEntityComponent } from 'app/shared/generic-components/manage-entity/manage-entity.component';
+import { ManageEntityLayout1Component } from 'app/shared/generic-components/manage-entity/manage-entity-layout-1.component';
 import { GlobalService } from 'app/shared/services/global/global.service';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { MAT_DIALOG_DATA } from '@angular/material/dialog';
@@ -13,7 +13,7 @@ import { CarService } from '../service/car.service';
   selector: 'app-manage-car',
   templateUrl: './manage-car.component.html',
 })
-export class ManageCarComponent extends ManageEntityComponent<Car> implements OnInit {
+export class ManageCarComponent extends ManageEntityLayout1Component<Car> implements OnInit {
     carFormGroup: FormGroup;
 
     constructor(

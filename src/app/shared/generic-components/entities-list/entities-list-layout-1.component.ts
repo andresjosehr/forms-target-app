@@ -15,7 +15,7 @@ import { MatSnackBar } from '@angular/material/snack-bar';
   selector: 'app-entities-list',
   template: '',
 })
-export class EntitiesListComponent<Entity> {
+export class EntitiesListLayout1Component<Entity> {
     requestEvent: Subject<boolean> = new Subject();
 	dataSource: MatTableDataSource<any>;
 	entitiesPaginated1: any;
