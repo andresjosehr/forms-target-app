@@ -1,6 +1,6 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { CarsListComponent } from './cars-list.component';
+import { ProductsListComponent } from './products-list.component';
 import { MatPaginatorModule } from '@angular/material/paginator';
 import { MatTableModule } from '@angular/material/table';
 import { RouterModule } from '@angular/router';
@@ -17,7 +17,7 @@ import {MatNativeDateModule} from '@angular/material/core';
 
 @NgModule({
   declarations: [
-    CarsListComponent
+    ProductsListComponent
   ],
   imports: [
     CommonModule,
@@ -42,4 +42,4 @@ import {MatNativeDateModule} from '@angular/material/core';
     { provide: MatDialogRef, useValue: {} }
   ]
 })
-export class CarsListModule { }
+export class ProductsListModule { }

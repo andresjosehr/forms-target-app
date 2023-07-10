@@ -2,12 +2,20 @@ import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormControl, FormGroup } from '@angular/forms';
 // import { Client } from 'app/interfaces/entities/client';
 import { ClientsService } from 'app/shared/services/clients/clients.service';
-import { debounceTime, distinctUntilChanged } from 'rxjs';
-import { OrdersService } from './service/orders.service';
+import { OrdersService } from '../service/orders.service';
 import { GlobalService } from 'app/shared/services/global/global.service';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { MatDialog } from '@angular/material/dialog';
-import { CarsListComponent } from 'app/forms-1/cars/cars-list/cars-list.component';
+
+
+
+
+
+
+
+    import { ProductsListComponent } from 'app/forms-1/products/products-list/products-list.component';
+
+
 
 @Component({
   selector: 'app-orders',
@@ -15,54 +23,70 @@ import { CarsListComponent } from 'app/forms-1/cars/cars-list/cars-list.componen
 })
 export class OrdersComponent implements OnInit {
 
-    columns = ['sell_code', 'price', 'amount', 'car_id', 'actions'];
+    columns = [ 'amount', 'payment_type', 'product', 'actions'];
     client;
-    orderFG: FormGroup;
-
     components = {
-        'car': CarsListComponent
+
+
+
+
+
+
+          'product': {com: ProductsListComponent, col:  'name'   },
+
+
     };
 
+    formGroup: FormGroup;
     constructor(
         private _clientsService: ClientsService,
-        private _orderService: OrdersService,
         private _globalService: GlobalService,
         private _matSnachBar: MatSnackBar,
         private _matDialog: MatDialog,
-        private _formBuilder: FormBuilder
+        private _formBuilder: FormBuilder,
+        protected _service: OrdersService,
     ) { }
 
     ngOnInit(): void {
-        this.orderFG = this._formBuilder.group({
-            id: [''],
-            client_id: [''],
-            sell_code: [''],
-            price: [''],
-            amount: [''],
-            car_id: [''],
-            car: [''],
+        this.formGroup = this._formBuilder.group({
+          id: [],
+          client_id: [],
+
+            amount: [], // m9apbo0te3w7s3x2ppni
+
+
+            payment_type: [], // emzvxkpj0kxfvlmxmdoi
+
+
+            product: [], // mt7h7f1rvzzjvgsn14zu
+
+              productToShow: []
+
+
         });
     }
 
 
-    selectEntity(entityName) {
-        const dialogRef = this._matDialog.open(this.components[entityName], {
+    selectEntity(entityName, fieldName) {
+        const dialogRef = this._matDialog.open(this.components[entityName].com, {
             data: {
                 isChild: true
             }
         });
 
+
+
         dialogRef.afterClosed().subscribe(result => {
-            this.orderFG.get(entityName).setValue(result.name);
-            this.orderFG.get('car_id').setValue(result.id);
+            this.formGroup.get(fieldName).setValue(result[this.components[entityName].col]);
+            this.formGroup.get(entityName).setValue(result.id);
         });
       }
 
       store(): void{
 
-        this._orderService.store(this.orderFG.value).subscribe((response: any) => {
+        this._service.store(this.formGroup.value).subscribe((response: any) => {
 
-            this.orderFG.reset();
+            this.formGroup.reset();
 
             this._globalService.openSnackBar(this._matSnachBar, response.message);
             this.selectClient(this.client);
@@ -71,9 +95,9 @@ export class OrdersComponent implements OnInit {
 
       update(): void{
 
-        this._orderService.update(this.orderFG.value.id, this.orderFG.value).subscribe((response: any) => {
+        this._service.update(this.formGroup.value.id, this.formGroup.value).subscribe((response: any) => {
 
-            this.orderFG.reset();
+            this.formGroup.reset();
 
             this._globalService.openSnackBar(this._matSnachBar, response.message);
             this.selectClient(this.client);
@@ -82,24 +106,25 @@ export class OrdersComponent implements OnInit {
 
     selectClient(client){
         this.client = client;
-        this.orderFG.reset();
-        this.orderFG.get('client_id').setValue(client.id);
+        this.formGroup.reset();
+        this.formGroup.get('client_id').setValue(client.id);
         this._clientsService.get(client.id).subscribe((response: any) => {
             this.client = response.data;
         });
     }
 
     delete(id: number): void{
-        this._orderService.destroy(id).subscribe((response: any) => {
+        this._service.destroy(id).subscribe((response: any) => {
             this.client.orders = this.client.orders.filter((order) => order.id !== id);
             this._globalService.openSnackBar(this._matSnachBar, response.message);
         });
     }
 
     edit(id: string): void{
-        this._orderService.get(id).subscribe((response: any) => {
-            this.orderFG.patchValue(response.data);
-            this.orderFG.get('car').setValue(response.data.car.name);
+        this._service.get(id).subscribe((response: any) => {
+            this.formGroup.patchValue(response.data);
+            console.log(response);
+            this.formGroup.get('productToShow').setValue(response.data.product.name);
         });
     }
 }

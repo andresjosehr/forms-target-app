@@ -1,14 +1,16 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { GenericServiceService } from 'app/shared/services/generic-service/generic-service.service';
-import { Car } from '../car';
+import { Order } from '../order';
+
 @Injectable({
   providedIn: 'root'
 })
-export class CarService extends GenericServiceService<Car>{
+export class OrdersService extends GenericServiceService<Order>{
+
   constructor(
-    protected _httpClient: HttpClient,
+    private _http: HttpClient
   ) {
-    super(_httpClient, 'cars');
+    super(_http, 'orders')
   }
 }

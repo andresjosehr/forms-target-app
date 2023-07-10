@@ -4,11 +4,21 @@ import { FuseNavigationItem } from '@fuse/components/navigation';
 const navigation: FuseNavigationItem[] = [
     {
         id   : 'example',
-        title: 'Example 2',
+        title: 'Example',
         type : 'basic',
         icon : 'heroicons_outline:chart-pie',
         link : '/example'
     },
+
+    // Begin null
+      {
+         id   : 'products',
+         title: 'Productoses',
+         type : 'basic',
+         // icon : 'email',
+         link  : '/productoses'
+      },
+      // End null
 
        // Begin null
       {
@@ -20,18 +30,10 @@ const navigation: FuseNavigationItem[] = [
       },
       // End null
 
-       // Begin null
-      {
-         id   : 'students',
-         title: 'Estudiantes',
-         type : 'basic',
-         // icon : 'email',
-         link  : '/estudiantes'
-      },
-      // End null
-
        /* Add new menu items here */
      
+     
+
 
 
 

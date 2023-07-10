@@ -6,15 +6,15 @@ import { GlobalService } from 'app/shared/services/global/global.service';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { MAT_DIALOG_DATA } from '@angular/material/dialog';
 import { Subject } from 'rxjs';
-import { Car } from '../car';
-import { CarService } from '../service/car.service';
+import { Product } from '../product';
+import { ProductService } from '../service/product.service';
 
 @Component({
-  selector: 'app-manage-car',
-  templateUrl: './manage-car.component.html',
+  selector: 'app-manage-product',
+  templateUrl: './manage-product.component.html',
 })
-export class ManageCarComponent extends ManageEntityLayout1Component<Car> implements OnInit {
-    carFormGroup: FormGroup;
+export class ManageProductComponent extends ManageEntityLayout1Component<Product> implements OnInit {
+    productFormGroup: FormGroup;
 
     constructor(
       protected _globalService: GlobalService,
@@ -22,14 +22,20 @@ export class ManageCarComponent extends ManageEntityLayout1Component<Car> implem
 		  protected _formBuilder: FormBuilder,
 		  protected _router: Router,
       protected _matSnackBar: MatSnackBar,
-      protected _service: CarService,
+      protected _service: ProductService,
       @Inject(MAT_DIALOG_DATA) public data: {id: string | null, requestEvent: Subject<boolean>},
 
     ) {
         const entityFormGroup = _formBuilder.group({
-            name: [], // nintoziznxac9xsqqlww
+            name: [, [Validators.required]], // 3li6fds4cskk3yt7fm1w
+            type: [, [Validators.minLength(3), Validators.minLength(3)]], // 0kq8kagopdbg7nwondlb
+            price: [, [Validators.min(10)]], // al9duapn415l80smgd0p
+            code: [, [Validators.maxLength(5)]], // rsmk8pq1ebcvja4whr7o
+            stock: [false], // t3wugwp72exut56gx7pv
+            offer: [], // nbc2mg4zvaftyyp1njk8
+            photo: [], // 776b1omatnaow79g03qq
         });
-        super(_globalService, _activateRoute, _formBuilder, _router, _matSnackBar, entityFormGroup, _service, data, 'Carros', 'Carro');
+        super(_globalService, _activateRoute, _formBuilder, _router, _matSnackBar, entityFormGroup, _service, data, 'Productoses', 'Productos');
     }
     ngOnInit(): void {
       this.afterRequest.subscribe((response) => {

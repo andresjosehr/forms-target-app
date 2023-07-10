@@ -1,0 +1,589 @@
+<div class="w-full p-10" *ngIf="!isChild">
+   <div class="grid grid-cols-1 sm:grid-cols-2 gap-8 w-full">
+      <div class="w-full col-span-1">
+         <div class="text-3xl font-bold">Productoses</div>
+         <div class="text-secondary">
+            Una lista de productoses registradas en el
+            sistema
+         </div>
+      </div>
+      <div class="w-full col-span-1">
+         <div class="sm:text-right">
+            <button
+               (click)="manageEntity(null)"
+               class="w-full sm:w-fit rounded mr-1 px-3 bg-primary-300 text-on-primary-300"
+               mat-stroked-button
+               >
+            Crear productos
+            </button>
+         </div>
+      </div>
+      <div class="w-full col-span-1">
+         <!-- Success -->
+         <fuse-alert *ngIf="m" [type]="'success'">
+         <span fuseAlertTitle>Exito</span>
+         El/la productos ha sido
+         <span *ngIf="m === '1'">creado</span>
+         <span *ngIf="m === '2'">actualizado</span>
+         exitosamente
+         </fuse-alert>
+      </div>
+   </div>
+   <div
+      [formGroup]="_searchFormGroup"
+      class="grid grid-cols-11 gap-2 items-center search-form"
+      >
+
+      <!-- Este es el tipo: text -->
+      <!-- 3li6fds4cskk3yt7fm1w search field -->
+      <div class="col-span-2">
+         <mat-form-field class="w-full" appearance="outline">
+            <mat-label>Nombre</mat-label>
+
+            <input id="name" type="text" formControlName="name" matInput />
+
+         </mat-form-field>
+      </div>
+
+      <!-- Este es el tipo: select -->
+      <!-- 0kq8kagopdbg7nwondlb search field -->
+      <div class="col-span-2">
+         <mat-form-field class="w-full" appearance="outline">
+            <mat-label>Tipo</mat-label>
+
+            <mat-select id="type" formControlName="type" >
+               <mat-option value=""></mat-option>
+               <mat-option value="Quincalleria">Quincalleria </mat-option>
+               <mat-option value="Alimenticio">Alimenticio </mat-option>
+            </mat-select>
+
+         </mat-form-field>
+      </div>
+
+      <!-- Este es el tipo: text -->
+      <!-- al9duapn415l80smgd0p search field -->
+      <div class="col-span-2">
+         <mat-form-field class="w-full" appearance="outline">
+            <mat-label>Precio</mat-label>
+
+            <input id="price" type="text" formControlName="price" matInput />
+
+         </mat-form-field>
+      </div>
+
+      <!-- Este es el tipo: text -->
+      <!-- rsmk8pq1ebcvja4whr7o search field -->
+      <div class="col-span-2">
+         <mat-form-field class="w-full" appearance="outline">
+            <mat-label>Codigo</mat-label>
+
+            <input id="code" type="text" formControlName="code" matInput />
+
+         </mat-form-field>
+      </div>
+
+      <!-- Este es el tipo: checkbox -->
+      <!-- t3wugwp72exut56gx7pv search field -->
+      <div class="col-span-2">
+         <mat-form-field class="w-full" appearance="outline">
+            <mat-label>En stock</mat-label>
+
+              <mat-select id="stock" formControlName="stock" >
+                 <mat-option value=""></mat-option>
+                  <mat-option [value]="0">No</mat-option>
+                  <mat-option [value]="1">Si</mat-option>
+              </mat-select>
+         </mat-form-field>
+      </div>
+
+      <!-- Este es el tipo: radio -->
+      <!-- nbc2mg4zvaftyyp1njk8 search field -->
+      <div class="col-span-2">
+         <mat-form-field class="w-full" appearance="outline">
+            <mat-label>Oferta</mat-label>
+
+            <mat-select id="offer" formControlName="offer" >
+               <mat-option value=""></mat-option>
+               <mat-option value="0%">0% </mat-option>
+               <mat-option value="20%">20% </mat-option>
+               <mat-option value="50%">50% </mat-option>
+               <mat-option value="80%">80% </mat-option>
+            </mat-select>
+
+         </mat-form-field>
+      </div>
+      <div class="col-span-2">
+         <mat-form-field class="w-full" appearance="outline">
+            <mat-label>Termino</mat-label>
+            <input matInput formControlName="searchString" />
+         </mat-form-field>
+      </div>
+      <div class="col-span-1 text-left">
+         <button (click)="makeSearch(1)" mat-mini-fab>
+            <mat-icon aria-label="Example icon-button with a heart icon"
+               >search</mat-icon
+               >
+         </button>
+      </div>
+   </div>
+   <hr class="my-3" />
+   <div
+      class="sm:col-span-6 flex flex-col flex-auto py-2 px-6 bg-card shadow rounded-2xl overflow-hidden"
+      >
+      <!-- Section -->
+      <div class="flex flex-col flex-auto mt-2 overflow-x-auto max-h-100">
+         <table
+            class="md:min-w-240 overflow-y-visible"
+            mat-table
+            [dataSource]="dataSource"
+            >
+
+            <!-- 3li6fds4cskk3yt7fm1w column -->
+            <ng-container matColumnDef="name">
+               <th mat-header-cell *matHeaderCellDef>
+                  Nombre
+               </th>
+               <td data-label="Dirección" mat-cell *matCellDef="let product" class="px-4" >
+                  <span class="font-medium">
+                  {{product.name || "-"}}
+
+                  </span>
+               </td>
+            </ng-container>
+
+            <!-- 0kq8kagopdbg7nwondlb column -->
+            <ng-container matColumnDef="type">
+               <th mat-header-cell *matHeaderCellDef>
+                  Tipo
+               </th>
+               <td data-label="Dirección" mat-cell *matCellDef="let product" class="px-4" >
+                  <span class="font-medium">
+                  {{product.type || "-"}}
+
+                  </span>
+               </td>
+            </ng-container>
+
+            <!-- al9duapn415l80smgd0p column -->
+            <ng-container matColumnDef="price">
+               <th mat-header-cell *matHeaderCellDef>
+                  Precio
+               </th>
+               <td data-label="Dirección" mat-cell *matCellDef="let product" class="px-4" >
+                  <span class="font-medium">
+                  {{product.price || "-"}}
+
+                  </span>
+               </td>
+            </ng-container>
+
+            <!-- rsmk8pq1ebcvja4whr7o column -->
+            <ng-container matColumnDef="code">
+               <th mat-header-cell *matHeaderCellDef>
+                  Codigo
+               </th>
+               <td data-label="Dirección" mat-cell *matCellDef="let product" class="px-4" >
+                  <span class="font-medium">
+                  {{product.code || "-"}}
+
+                  </span>
+               </td>
+            </ng-container>
+
+            <!-- t3wugwp72exut56gx7pv column -->
+            <ng-container matColumnDef="stock">
+               <th mat-header-cell *matHeaderCellDef>
+                  En stock
+               </th>
+               <td data-label="Dirección" mat-cell *matCellDef="let product" class="px-4" >
+                  <span class="font-medium">
+
+                    {{product.stock ? "Si" : "No"}}
+                  </span>
+               </td>
+            </ng-container>
+
+            <!-- nbc2mg4zvaftyyp1njk8 column -->
+            <ng-container matColumnDef="offer">
+               <th mat-header-cell *matHeaderCellDef>
+                  Oferta
+               </th>
+               <td data-label="Dirección" mat-cell *matCellDef="let product" class="px-4" >
+                  <span class="font-medium">
+                  {{product.offer || "-"}}
+
+                  </span>
+               </td>
+            </ng-container>
+
+            <!-- 776b1omatnaow79g03qq column -->
+            <ng-container matColumnDef="photo">
+               <th mat-header-cell *matHeaderCellDef>
+                  Fotos
+               </th>
+               <td data-label="Dirección" mat-cell *matCellDef="let product" class="px-4" >
+                  <span class="font-medium">
+                  {{getFileCounts(product.photo)}}
+
+                  </span>
+               </td>
+            </ng-container>
+
+            <!-- Acciones -->
+            <ng-container matColumnDef="actions">
+               <th mat-header-cell *matHeaderCellDef>Acciones</th>
+               <td
+                  data-label="Acciones"
+                  mat-cell
+                  *matCellDef="let product"
+                  >
+                  <div class="flex justify-end gap-2">
+                     <div class="1/2">
+                        <mat-icon
+                           (click)="manageEntity(product.id)"
+                           class="text-on-primary-300 cursor-pointer"
+                           >edit</mat-icon
+                           >
+                     </div>
+                     <div class="1/2">
+                        <mat-icon
+                           (click)="confirmDestroy(product.id)"
+                           class="text-red-500 cursor-pointer"
+                           >delete</mat-icon
+                           >
+                     </div>
+                  </div>
+               </td>
+            </ng-container>
+            <tr
+               class="h-9"
+               mat-header-row
+               *matHeaderRowDef="columns; sticky: true"
+               ></tr>
+            <tr
+               class="h-6 hover-tabla"
+               mat-row
+               *matRowDef="let row; columns: columns"
+               ></tr>
+         </table>
+         <mat-paginator
+         [length]="entitiesPaginated1?.total"
+         [pageSize]="entitiesPaginated1?.per_page"
+         [pageSizeOptions]="[10, 25, 100]"
+         (page)="paginate($event, 1)"
+         aria-label="Select page"
+         >
+         </mat-paginator>
+      </div>
+   </div>
+   <hr class="my-10" />
+   <div
+      class="flex flex-row flex-wrap flex-auto overflow-hidden py-3"
+      style="gap: 20px"
+      >
+      <div
+         style="width: calc(25% - 20px)"
+         *ngFor="let product of entitiesPaginated2?.data"
+         >
+         <div
+            (click)="manageEntity(product.id)"
+            class="bg-card shadow rounded-2xl p-4 cursor-pointer transition ease-in-out hover:scale-105 duration-300"
+            >
+            <div class="flex gap-2">
+
+               <div class="text-left" style="width: calc(50% - 8px)">
+                  <div class="text-xs">Nombre</div>
+                  <div class="text-base">
+                     {{product.name || "-"}}
+                  </div>
+               </div>
+
+               <div class="text-right" style="width: calc(50% - 8px)">
+                  <div class="text-xs">Tipo</div>
+                  <div class="text-base">
+                     {{product.type || "-"}}
+                  </div>
+               </div>
+
+            </div>
+            <hr class="my-1" />
+
+            <div>
+               <img
+                  class="w-full"
+                  [src]="getImages(product.photo)"
+                  />
+            </div>
+
+            <hr class="my-1" />
+            <div class="flex gap-2">
+
+               <div class="text-left" style="width: calc(50% - 8px)">
+                  <div class="text-xs">Precio</div>
+                  <div class="text-base">
+                     {{product.price || "-"}}
+                  </div>
+               </div>
+
+               <div class="text-right" style="width: calc(50% - 8px)">
+                  <div class="text-xs">Codigo</div>
+                  <div class="text-base">
+                     {{product.code || "-"}}
+                  </div>
+               </div>
+
+            </div>
+         </div>
+      </div>
+   </div>
+   <mat-paginator
+   [length]="entitiesPaginated2?.total"
+   [pageSize]="entitiesPaginated2?.per_page"
+   [pageSizeOptions]="[10, 25, 100]"
+   (page)="paginate($event, 2)"
+   aria-label="Select page"
+   >
+   </mat-paginator>
+</div>
+<div *ngIf="isChild">
+   <div [formGroup]="_searchFormGroup" class="grid grid-cols-11 gap-2 items-center search-form">
+
+          <!-- Epale este es el nombre del campo: name -->
+          <div class="col-span-2">
+            <mat-form-field class="w-full" appearance="outline">
+                <mat-label>Nombre</mat-label>
+
+                <input
+                  id="name"
+                  type="text"
+                  formControlName="name"
+                  matInput
+                  />
+            </mat-form-field>
+          </div>
+
+          <!-- Epale este es el nombre del campo: type -->
+          <div class="col-span-2">
+            <mat-form-field class="w-full" appearance="outline">
+                <mat-label>Tipo</mat-label>
+
+                <mat-select
+                  id="type"
+                  formControlName="type"
+                  >
+                  <mat-option value=""></mat-option>
+                  <mat-option value="Quincalleria">Quincalleria </mat-option>
+                  <mat-option value="Alimenticio">Alimenticio </mat-option>
+                </mat-select>
+            </mat-form-field>
+          </div>
+
+          <!-- Epale este es el nombre del campo: price -->
+          <div class="col-span-2">
+            <mat-form-field class="w-full" appearance="outline">
+                <mat-label>Precio</mat-label>
+
+                <input
+                  id="price"
+                  type="text"
+                  formControlName="price"
+                  matInput
+                  />
+            </mat-form-field>
+          </div>
+
+          <!-- Epale este es el nombre del campo: code -->
+          <div class="col-span-2">
+            <mat-form-field class="w-full" appearance="outline">
+                <mat-label>Codigo</mat-label>
+
+                <input
+                  id="code"
+                  type="text"
+                  formControlName="code"
+                  matInput
+                  />
+            </mat-form-field>
+          </div>
+
+          <!-- Epale este es el nombre del campo: stock -->
+          <div class="col-span-2">
+            <mat-form-field class="w-full" appearance="outline">
+                <mat-label>En stock</mat-label>
+
+            </mat-form-field>
+          </div>
+
+          <!-- Epale este es el nombre del campo: offer -->
+          <div class="col-span-2">
+            <mat-form-field class="w-full" appearance="outline">
+                <mat-label>Oferta</mat-label>
+
+            </mat-form-field>
+          </div>
+
+      <div class="col-span-2">
+         <mat-form-field class="w-full" appearance="outline">
+            <mat-label>Termino</mat-label>
+            <input matInput formControlName="searchString" />
+         </mat-form-field>
+      </div>
+      <div class="col-span-1 text-left">
+         <button (click)="makeSearch(1)" mat-mini-fab>
+            <mat-icon aria-label="Example icon-button with a heart icon"
+               >search</mat-icon
+               >
+         </button>
+      </div>
+   </div>
+   <hr class="my-3" />
+   <div
+      class="sm:col-span-6 flex flex-col flex-auto py-2 px-6 bg-card shadow rounded-2xl overflow-hidden"
+      >
+      <!-- Section -->
+      <div class="flex flex-col flex-auto mt-2 overflow-x-auto max-h-100">
+         <table
+            class="md:min-w-240 overflow-y-visible"
+            mat-table
+            [dataSource]="dataSource"
+            >
+
+            <!-- 3li6fds4cskk3yt7fm1w column -->
+            <ng-container matColumnDef="name">
+               <th mat-header-cell *matHeaderCellDef>
+                  Nombre
+               </th>
+               <td
+                  data-label="Dirección"
+                  mat-cell
+                  *matCellDef="let product"
+                  class="px-4"
+                  >
+                  <span class="font-medium">
+                  {{product.name || "-"}}
+                  </span>
+               </td>
+            </ng-container>
+
+            <!-- 0kq8kagopdbg7nwondlb column -->
+            <ng-container matColumnDef="type">
+               <th mat-header-cell *matHeaderCellDef>
+                  Tipo
+               </th>
+               <td
+                  data-label="Dirección"
+                  mat-cell
+                  *matCellDef="let product"
+                  class="px-4"
+                  >
+                  <span class="font-medium">
+                  {{product.type || "-"}}
+                  </span>
+               </td>
+            </ng-container>
+
+            <!-- al9duapn415l80smgd0p column -->
+            <ng-container matColumnDef="price">
+               <th mat-header-cell *matHeaderCellDef>
+                  Precio
+               </th>
+               <td
+                  data-label="Dirección"
+                  mat-cell
+                  *matCellDef="let product"
+                  class="px-4"
+                  >
+                  <span class="font-medium">
+                  {{product.price || "-"}}
+                  </span>
+               </td>
+            </ng-container>
+
+            <!-- rsmk8pq1ebcvja4whr7o column -->
+            <ng-container matColumnDef="code">
+               <th mat-header-cell *matHeaderCellDef>
+                  Codigo
+               </th>
+               <td
+                  data-label="Dirección"
+                  mat-cell
+                  *matCellDef="let product"
+                  class="px-4"
+                  >
+                  <span class="font-medium">
+                  {{product.code || "-"}}
+                  </span>
+               </td>
+            </ng-container>
+
+            <!-- t3wugwp72exut56gx7pv column -->
+            <ng-container matColumnDef="stock">
+               <th mat-header-cell *matHeaderCellDef>
+                  En stock
+               </th>
+               <td
+                  data-label="Dirección"
+                  mat-cell
+                  *matCellDef="let product"
+                  class="px-4"
+                  >
+                  <span class="font-medium">
+                  {{product.stock || "-"}}
+                  </span>
+               </td>
+            </ng-container>
+
+            <!-- nbc2mg4zvaftyyp1njk8 column -->
+            <ng-container matColumnDef="offer">
+               <th mat-header-cell *matHeaderCellDef>
+                  Oferta
+               </th>
+               <td
+                  data-label="Dirección"
+                  mat-cell
+                  *matCellDef="let product"
+                  class="px-4"
+                  >
+                  <span class="font-medium">
+                  {{product.offer || "-"}}
+                  </span>
+               </td>
+            </ng-container>
+
+            <!-- 776b1omatnaow79g03qq column -->
+            <ng-container matColumnDef="photo">
+               <th mat-header-cell *matHeaderCellDef>
+                  Fotos
+               </th>
+               <td
+                  data-label="Dirección"
+                  mat-cell
+                  *matCellDef="let product"
+                  class="px-4"
+                  >
+                  <span class="font-medium">
+                  {{getFileCounts(product.photo)}}
+                  </span>
+               </td>
+            </ng-container>
+
+            <!-- Acciones -->
+            <ng-container matColumnDef="actions">
+               <th mat-header-cell *matHeaderCellDef class="hidden">Acciones</th>
+               <td class="hidden" data-label="Acciones" mat-cell *matCellDef="let product" >
+               </td>
+            </ng-container>
+            <tr class="h-9" mat-header-row *matHeaderRowDef="columns; sticky: true" ></tr>
+            <tr (click)="selectEntity(row)" class="h-6 hover-tabla cursor-pointer" mat-row *matRowDef="let row; columns: columns" ></tr>
+         </table>
+         <mat-paginator
+         [length]="entitiesPaginated1?.total"
+         [pageSize]="entitiesPaginated1?.per_page"
+         [pageSizeOptions]="[10, 25, 100]"
+         (page)="paginate($event, 1)"
+         aria-label="Select page"
+         >
+         </mat-paginator>
+      </div>
+   </div>
+</div>

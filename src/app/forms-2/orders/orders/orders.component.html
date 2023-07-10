@@ -12,88 +12,136 @@
               <input formControlName="id" type="hidden">
               <input formControlName="client_id" type="hidden">
 
-                
-                  
+
+
                     <div class="col-span-1">
-                  
 
-                  
-                  
+
+
+
                     <mat-form-field class="w-full">
-                        <mat-label>Nombre</mat-label>
+                        <mat-label>Cantidad</mat-label>
 
-                        
-                          <input id='name' type="text" formControlName="name" matInput>
-                        
 
-                        
+                          <input id='amount' type="text" formControlName="amount" matInput>
 
-                        
 
-                        
 
-                        
+
+
+
+
+
+
 
                         <!--  -->
 
 
-                        
+
 
                     </mat-form-field>
-                  
-
-                  
-
-                  
 
 
-                  
+
+
+
+
+
+
 
 
                 </div>
 
-                
-                  
+
+
                     <div class="col-span-1">
-                  
 
-                  
-                  
+
+
+
                     <mat-form-field class="w-full">
-                        <mat-label>Carro</mat-label>
+                        <mat-label>Tipo pago</mat-label>
 
-                        
 
-                        
 
-                        
 
-                        
 
-                        
+
+                          <mat-select id='payment_type' formControlName="payment_type">
+
+
+                              <mat-option value="Efectivo">Efectivo </mat-option>
+
+                              <mat-option value="Tarjeta">Tarjeta </mat-option>
+
+
+                          </mat-select>
+
+
+
+
+
 
                         <!--  -->
 
 
-                        
-                          <input formControlName="carToShow" class="cursor-pointer" (click)="selectEntity('car', 'carToShow')" type="text" matInput placeholder="Carro">
-                          <input formControlName="car" type="hidden" placeholder="Carro">
-                        
+
 
                     </mat-form-field>
-                  
-
-                  
-
-                  
 
 
-                  
+
+
+
+
+
+
 
 
                 </div>
 
-                
+
+
+                    <div class="col-span-1">
+
+
+
+
+                    <mat-form-field class="w-full">
+                        <mat-label>Producto</mat-label>
+
+
+
+
+
+
+
+
+
+
+
+                        <!--  -->
+
+
+
+                          <input formControlName="productToShow" class="cursor-pointer" (click)="selectEntity('product', 'productToShow')" type="text" matInput placeholder="Productos">
+                          <input formControlName="product" type="hidden" placeholder="Producto">
+
+
+                    </mat-form-field>
+
+
+
+
+
+
+
+
+
+
+                </div>
+
+
 
 
 
@@ -111,41 +159,57 @@
                 </div>
             </div>
             <div *ngIf="client" class="flex flex-col flex-auto mt-2 overflow-x-auto max-h-100">
-                <table class="md:min-w-240 overflow-y-visible mt-12" mat-table [dataSource]="client.students">
+                <table class="md:min-w-240 overflow-y-visible mt-12" mat-table [dataSource]="client.orders">
 
-                  
-                    
-                    <!-- g6i73w07n6cb09317fbb column -->
-                    <ng-container matColumnDef="name">
+
+
+                    <!-- m9apbo0te3w7s3x2ppni column -->
+                    <ng-container matColumnDef="amount">
                        <th mat-header-cell *matHeaderCellDef>
-                          Nombre
+                          Cantidad
                        </th>
-                       <td data-label="Dirección" mat-cell *matCellDef="let student" class="px-4" >
+                       <td data-label="Dirección" mat-cell *matCellDef="let order" class="px-4" >
                           <span class="font-medium">
-                          
-                          {{student.name || "-"}}
-                            
+
+                          {{order.amount || "-"}}
+
                           </span>
                        </td>
                     </ng-container>
-                    
-                    
-                    
-                    <!-- nxrgagylj00r67zsl45i column -->
-                    <ng-container matColumnDef="car">
+
+
+
+                    <!-- emzvxkpj0kxfvlmxmdoi column -->
+                    <ng-container matColumnDef="payment_type">
                        <th mat-header-cell *matHeaderCellDef>
-                          Carro
+                          Tipo pago
                        </th>
-                       <td data-label="Dirección" mat-cell *matCellDef="let student" class="px-4" >
+                       <td data-label="Dirección" mat-cell *matCellDef="let order" class="px-4" >
                           <span class="font-medium">
-                            
-                          {{student.cars.name || "-"}}
-                          
+
+                          {{order.payment_type || "-"}}
+
                           </span>
                        </td>
                     </ng-container>
-                    
-                    
+
+
+
+                    <!-- mt7h7f1rvzzjvgsn14zu column -->
+                    <ng-container matColumnDef="product">
+                       <th mat-header-cell *matHeaderCellDef>
+                          Producto
+                       </th>
+                       <td data-label="Dirección" mat-cell *matCellDef="let order" class="px-4" >
+                          <span class="font-medium">
+
+                          {{order.products.name || "-"}}
+
+                          </span>
+                       </td>
+                    </ng-container>
+
+
 
                     <ng-container matColumnDef="actions">
                         <th mat-header-cell *matHeaderCellDef>Eliminar</th>

@@ -1,0 +1,177 @@
+<div class="w-full max-w-3xl mx-auto">
+            <form>
+                    <!-- Section -->
+                    <div class="grid sm:grid-cols-2 gap-8 w-full mb-8">
+                        <div class="w-full col-span-1">
+                                <div class="text-3xl font-bold">Crear productos</div>
+                                <div class="text-secondary">Ingresa la informacion para crear un productos</div>
+                        </div>
+                        <div class="col-span-1 relative">
+                        </div>
+                    </div>
+                    <div [formGroup]="entityFormGroup" class="w-full mt-8">
+                      <mat-stepper linear #stepper>
+                          <mat-step>
+                            <div class="grid sm:grid-cols-2 gap-y-1 gap-x-5 w-full mt-5">
+
+                            <ng-template matStepLabel>Paso #1</ng-template>
+
+                                <div class="col-span-1">
+
+                                  <mat-form-field class="w-full">
+                                      <mat-label>Nombre</mat-label>
+
+                                        <input id='name' type="text" formControlName="name" matInput>
+
+                                      <!--  -->
+
+                                        <mat-error *ngFor="let i of _globalService.errorsLength(entityFormGroup.get('name'))">
+                                          <ng-container *ngIf="entityFormGroup.get('name').hasError(i)">
+                                            {{ entityFormGroup.get('name').errors[i] }}
+                                          </ng-container>
+                                        </mat-error>
+
+                                  </mat-form-field>
+
+                              </div>
+                            <!-- <div class="epale">1 --- 0</div> -->
+
+                            <ng-template matStepLabel>Paso #1</ng-template>
+
+                                <div class="col-span-1">
+
+                                  <mat-form-field class="w-full">
+                                      <mat-label>Tipo</mat-label>
+
+                                        <mat-select id='type' formControlName="type">
+
+                                            <mat-option value="Quincalleria">Quincalleria </mat-option>
+                                            <mat-option value="Alimenticio">Alimenticio </mat-option>
+
+                                        </mat-select>
+
+                                      <!--  -->
+
+                                        <mat-error *ngFor="let i of _globalService.errorsLength(entityFormGroup.get('type'))">
+                                          <ng-container *ngIf="entityFormGroup.get('type').hasError(i)">
+                                            {{ entityFormGroup.get('type').errors[i] }}
+                                          </ng-container>
+                                        </mat-error>
+
+                                  </mat-form-field>
+
+                              </div>
+                            <!-- <div class="epale">1 --- 0</div> -->
+
+                            <ng-template matStepLabel>Paso #1</ng-template>
+
+                                <div class="col-span-1">
+
+                                  <mat-form-field class="w-full">
+                                      <mat-label>Precio</mat-label>
+
+                                        <input id='price' type="text" formControlName="price" matInput>
+
+                                      <!--  -->
+
+                                        <mat-error *ngFor="let i of _globalService.errorsLength(entityFormGroup.get('price'))">
+                                          <ng-container *ngIf="entityFormGroup.get('price').hasError(i)">
+                                            {{ entityFormGroup.get('price').errors[i] }}
+                                          </ng-container>
+                                        </mat-error>
+
+                                  </mat-form-field>
+
+                              </div>
+                            <!-- <div class="epale">1 --- 0</div> -->
+
+                            <ng-template matStepLabel>Paso #1</ng-template>
+
+                                <div class="col-span-1">
+
+                                  <mat-form-field class="w-full">
+                                      <mat-label>Codigo</mat-label>
+
+                                        <input id='code' type="text" formControlName="code" matInput>
+
+                                      <!--  -->
+
+                                        <mat-error *ngFor="let i of _globalService.errorsLength(entityFormGroup.get('code'))">
+                                          <ng-container *ngIf="entityFormGroup.get('code').hasError(i)">
+                                            {{ entityFormGroup.get('code').errors[i] }}
+                                          </ng-container>
+                                        </mat-error>
+
+                                  </mat-form-field>
+
+                              </div>
+                            <!-- <div class="epale">1 --- 0</div> -->
+
+                            <ng-template matStepLabel>Paso #1</ng-template>
+
+                                <div class="col-span-1">
+
+                                  <div>
+                                      <div class="font-medium">En stock</div>
+                                      <div aria-label="Selecciona">
+                                          <mat-checkbox id='stock' formControlName="stock"></mat-checkbox>
+                                        </div>
+                                  </div>
+
+                              </div>
+                            <!-- <div class="epale">1 --- 0</div> -->
+
+                            <ng-template matStepLabel>Paso #1</ng-template>
+
+                                <div class="col-span-1">
+
+                                  <div>
+                                      <div class="font-medium">Oferta</div>
+                                      <mat-radio-group aria-label="Selecciona una opción" formControlName="offer">
+                                          <mat-radio-button value="0%">0%</mat-radio-button>
+                                          <mat-radio-button value="20%">20%</mat-radio-button>
+                                          <mat-radio-button value="50%">50%</mat-radio-button>
+                                          <mat-radio-button value="80%">80%</mat-radio-button>
+                                      </mat-radio-group>
+                                  </div>
+
+                              </div>
+                            <!-- <div class="epale">1 --- 0</div> -->
+
+                            <ng-template matStepLabel>Paso #1</ng-template>
+
+                              <div class="col-span-2">
+
+                                  <file-input [label]='"Fotos"' [files]="entityFormGroup.get('photo')"></file-input>
+
+                              </div>
+                            <!-- <div class="epale">1 --- 0</div> -->
+
+                          </div>
+
+                            <div class="w-full text-center mt-3">
+                              <button
+                                      class="ml-4"
+                                      mat-flat-button
+                                      type="button"
+                                      (click)="this.entityID ? updateEntity() : createEntity()"
+                                      [color]="'primary'">Guardar
+                              </button>
+                            </div>
+                          </mat-step>
+                      </mat-stepper>
+                    </div>
+                    <!-- Divider -->
+                    <div class="mt-11 mb-10 border-t"></div>
+                    <!-- Actions -->
+                    <div class="flex items-center justify-end">
+                            <!-- <button
+                                    class="ml-4"
+                                    mat-flat-button
+                                    type="button"
+                                    (click)="this.entityID ? updateEntity() : createEntity()"
+                                    [color]="'primary'">Guardar
+                            </button> -->
+                    </div>
+            </form>
+</div>

@@ -1,6 +1,6 @@
 import {NgModule} from '@angular/core';
 import {CommonModule} from '@angular/common';
-import {ManageCarComponent} from './manage-car.component';
+import {ManageProductComponent} from './manage-product.component';
 import {ReactiveFormsModule, FormsModule} from '@angular/forms';
 import {MatButtonModule} from '@angular/material/button';
 import {MatFormFieldModule} from '@angular/material/form-field';
@@ -17,7 +17,7 @@ import {MatStepperModule} from '@angular/material/stepper';
 
 @NgModule({
   declarations: [
-    ManageCarComponent
+    ManageProductComponent
   ],
   imports: [
     CommonModule,
@@ -36,4 +36,4 @@ import {MatStepperModule} from '@angular/material/stepper';
     MatStepperModule
   ]
 })
-export class ManageCarModule { }
+export class ManageProductModule { }
