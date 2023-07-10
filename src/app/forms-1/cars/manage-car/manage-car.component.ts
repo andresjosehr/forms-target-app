@@ -27,7 +27,7 @@ export class ManageCarComponent extends ManageEntityLayout1Component<Car> implem
 
     ) {
         const entityFormGroup = _formBuilder.group({
-            name: [], // mrg2px5qez9xrbgy8d4v
+            name: [], // nintoziznxac9xsqqlww
         });
         super(_globalService, _activateRoute, _formBuilder, _router, _matSnackBar, entityFormGroup, _service, data, 'Carros', 'Carro');
     }

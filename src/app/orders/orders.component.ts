@@ -6,8 +6,8 @@ import { debounceTime, distinctUntilChanged } from 'rxjs';
 import { OrdersService } from './service/orders.service';
 import { GlobalService } from 'app/shared/services/global/global.service';
 import { MatSnackBar } from '@angular/material/snack-bar';
-import { CarsListComponent } from 'app/cars/cars-list/cars-list.component';
 import { MatDialog } from '@angular/material/dialog';
+import { CarsListComponent } from 'app/forms-1/cars/cars-list/cars-list.component';
 
 @Component({
   selector: 'app-orders',
@@ -17,8 +17,11 @@ export class OrdersComponent implements OnInit {
 
     columns = ['sell_code', 'price', 'amount', 'car_id', 'actions'];
     client;
-
     orderFG: FormGroup;
+
+    components = {
+        'car': CarsListComponent
+    };
 
     constructor(
         private _clientsService: ClientsService,
@@ -43,7 +46,7 @@ export class OrdersComponent implements OnInit {
 
 
     selectEntity(entityName) {
-        const dialogRef = this._matDialog.open(CarsListComponent, {
+        const dialogRef = this._matDialog.open(this.components[entityName], {
             data: {
                 isChild: true
             }

@@ -44,7 +44,7 @@ export class CarsListComponent extends EntitiesListLayout1Component<Car>{
   ) {
     const searchFormGroup = _formBuilder.group({
         searchString: [],
-            name: [], // mrg2px5qez9xrbgy8d4v
+            name: [], // nintoziznxac9xsqqlww
     });
     super(_activatedRoute, _router, _formBuilder, _globalService, _userService, _fuseConfirmationService, _matSnackBar, searchFormGroup, _service, 'Carros', 'Carro');
     this.isChild = data.isChild;
@@ -70,9 +70,7 @@ export class CarsListComponent extends EntitiesListLayout1Component<Car>{
   getImages(files: string): string{
     return JSON.parse(files)[0]['fileBase64'];
   }
-
   selectEntity(entity: Car): void{
     this.dialogRef.close(entity);
   }
-
 }

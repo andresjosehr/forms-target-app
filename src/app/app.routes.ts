@@ -77,8 +77,12 @@ export const appRoutes: Route[] = [
             {path: 'example', loadChildren: () => import('app/modules/admin/example/example.routes')},
 
             /* Add new routes here */
-        { path: 'carros', loadChildren: () => import('app/cars/cars.module').then(m => m.CarsModule) },
-        { path: 'ordenes', loadChildren: () => import('app/orders/orders.module').then(m => m.OrdersModule) },
+            { path: 'estudiantes', loadChildren: () => import('app/forms-2/students/students/students.module').then(m => m.StudentsModule) },
+
+
+            { path: 'carros', loadChildren: () => import('app/forms-1/cars/cars.module').then(m => m.CarsModule) },
+
+            { path: 'ordenes', loadChildren: () => import('app/orders/orders.module').then(m => m.OrdersModule) },
 
 
 

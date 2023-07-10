@@ -12,23 +12,35 @@ const navigation: FuseNavigationItem[] = [
 
        // Begin null
       {
-         id   : 'cars',
-         title: 'Carros',
+         id   : 'orders',
+         title: 'Ordenes',
          type : 'basic',
          // icon : 'email',
-         link  : '/carros'
+         link  : '/ordenes'
       },
       // End null
 
+       // Begin null
       {
-        id   : 'students',
-        title: 'Ordenes',
-        type : 'basic',
-        // icon : 'email',
-        link  : '/ordenes'
-     },
+         id   : 'students',
+         title: 'Estudiantes',
+         type : 'basic',
+         // icon : 'email',
+         link  : '/estudiantes'
+      },
+      // End null
 
        /* Add new menu items here */
+     
+
+
+
+
+
+
+
+
+
 
 
 
