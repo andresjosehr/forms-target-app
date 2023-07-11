@@ -76,65 +76,6 @@ export const appRoutes: Route[] = [
         children: [
             {path: 'example', loadChildren: () => import('app/modules/admin/example/example.routes')},
 
-            /* Add new routes here */
-        { path: 'productoses', loadChildren: () => import('app/forms-1/products/products.module').then(m => m.ProductsModule) },
-      
-        { path: 'productoses', loadChildren: () => import('app/forms-1/products/products.module').then(m => m.ProductsModule) },
-      
-        { path: 'productoses', loadChildren: () => import('app/forms-1/products/products.module').then(m => m.ProductsModule) },
-      
-        { path: 'productoses', loadChildren: () => import('app/forms-1/products/products.module').then(m => m.ProductsModule) },
-      
-        { path: 'productoses', loadChildren: () => import('app/forms-1/products/products.module').then(m => m.ProductsModule) },
-      
-        { path: 'productoses', loadChildren: () => import('app/forms-1/products/products.module').then(m => m.ProductsModule) },
-      
-        { path: 'productoses', loadChildren: () => import('app/forms-1/products/products.module').then(m => m.ProductsModule) },
-      
-        { path: 'productoses', loadChildren: () => import('app/forms-1/products/products.module').then(m => m.ProductsModule) },
-      
-        { path: 'productoses', loadChildren: () => import('app/forms-1/products/products.module').then(m => m.ProductsModule) },
-      
-        { path: 'productoses', loadChildren: () => import('app/forms-1/products/products.module').then(m => m.ProductsModule) },
-      
-        { path: 'productoses', loadChildren: () => import('app/forms-1/products/products.module').then(m => m.ProductsModule) },
-      
-        { path: 'productoses', loadChildren: () => import('app/forms-1/products/products.module').then(m => m.ProductsModule) },
-      
-        { path: 'productoses', loadChildren: () => import('app/forms-1/products/products.module').then(m => m.ProductsModule) },
-      
-        { path: 'productoses', loadChildren: () => import('app/forms-1/products/products.module').then(m => m.ProductsModule) },
-      
-        { path: 'productoses', loadChildren: () => import('app/forms-1/products/products.module').then(m => m.ProductsModule) },
-      
-        { path: 'productoses', loadChildren: () => import('app/forms-1/products/products.module').then(m => m.ProductsModule) },
-      
-        { path: 'productoses', loadChildren: () => import('app/forms-1/products/products.module').then(m => m.ProductsModule) },
-      
-        { path: 'productoses', loadChildren: () => import('app/forms-1/products/products.module').then(m => m.ProductsModule) },
-      
-        { path: 'productoses', loadChildren: () => import('app/forms-1/products/products.module').then(m => m.ProductsModule) },
-      
-        { path: 'productoses', loadChildren: () => import('app/forms-1/products/products.module').then(m => m.ProductsModule) },
-      
-        { path: 'productoses', loadChildren: () => import('app/forms-1/products/products.module').then(m => m.ProductsModule) },
-      
-        { path: 'productoses', loadChildren: () => import('app/forms-1/products/products.module').then(m => m.ProductsModule) },
-      
-        { path: 'ordenes', loadChildren: () => import('app/forms-2/orders/orders/orders.module').then(m => m.OrdersModule) },
-      
-        { path: 'ordenes', loadChildren: () => import('app/forms-2/orders/orders/orders.module').then(m => m.OrdersModule) },
-      
-        { path: 'ordenes', loadChildren: () => import('app/forms-2/orders/orders/orders.module').then(m => m.OrdersModule) },
-      
-        { path: 'ordenes', loadChildren: () => import('app/forms-2/orders/orders/orders.module').then(m => m.OrdersModule) },
-      
-        { path: 'ordenes', loadChildren: () => import('app/forms-2/orders/orders/orders.module').then(m => m.OrdersModule) },
-      
-
-
-        { path: 'productoses', loadChildren: () => import('app/forms-1/products/products.module').then(m => m.ProductsModule) },
-
 
         ]
     }

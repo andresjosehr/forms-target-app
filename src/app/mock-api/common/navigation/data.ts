@@ -10,29 +10,9 @@ const navigation: FuseNavigationItem[] = [
         link : '/example'
     },
 
-    // Begin null
-      {
-         id   : 'products',
-         title: 'Productoses',
-         type : 'basic',
-         // icon : 'email',
-         link  : '/productoses'
-      },
-      // End null
-
-       // Begin null
-      {
-         id   : 'orders',
-         title: 'Ordenes',
-         type : 'basic',
-         // icon : 'email',
-         link  : '/ordenes'
-      },
-      // End null
-
        /* Add new menu items here */
-     
-     
+
+
 
 
 
