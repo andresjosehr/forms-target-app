@@ -76,6 +76,8 @@ export const appRoutes: Route[] = [
         children: [
             {path: 'example', loadChildren: () => import('app/modules/admin/example/example.routes')},
             /* Add new routes here */
+        { path: 'pruebas', loadChildren: () => import('app/forms-1/pruebas/pruebas.module').then(m => m.PruebasModule) },
+      
 
         ]
     }
