@@ -1,6 +1,6 @@
 import { Component, Inject } from '@angular/core';
 import { MAT_DIALOG_DATA } from '@angular/material/dialog';
-import { saveAs } from 'file-saver';
+// import { saveAs } from 'file-saver';
 
 
 @Component({
@@ -37,14 +37,14 @@ export class FileSliderComponent {
 
 
 
-    downloadFile(file: any) {
-        const byteCharacters = atob(file.fileBase64.split(',')[1]);
-        const byteNumbers = new Array(byteCharacters.length);
-        for (let i = 0; i < byteCharacters.length; i++) {
-            byteNumbers[i] = byteCharacters.charCodeAt(i);
-        }
-        const byteArray = new Uint8Array(byteNumbers);
-        const blob = new Blob([byteArray]);
-        saveAs(blob, file.name);
-      }
+    // downloadFile(file: any) {
+    //     const byteCharacters = atob(file.fileBase64.split(',')[1]);
+    //     const byteNumbers = new Array(byteCharacters.length);
+    //     for (let i = 0; i < byteCharacters.length; i++) {
+    //         byteNumbers[i] = byteCharacters.charCodeAt(i);
+    //     }
+    //     const byteArray = new Uint8Array(byteNumbers);
+    //     const blob = new Blob([byteArray]);
+    //     saveAs(blob, file.name);
+    //   }
 }
