@@ -20,7 +20,18 @@ const navigation: FuseNavigationItem[] = [
       },
       // End null
 
+       // Begin null
+      {
+         id   : 'cars',
+         title: 'Carros',
+         type : 'basic',
+         // icon : 'email',
+         link  : '/carros'
+      },
+      // End null
+
        /* Add new menu items here */
+     
      
 
 
