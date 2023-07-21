@@ -10,7 +10,8 @@
         "start": "ng serve",
         "build": "ng build",
         "watch": "ng build --watch --configuration development",
-        "test": "ng test"
+        "test": "ng test",
+        "update-lib": "npm i entities-builder@latest"
     },
     "dependencies": {
         "@angular/animations": "16.0.3",
